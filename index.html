@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Devin for Travel &amp; Hospitality</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="A Travel and Hospitality plan for Cognition: where Devin wins, how the team sells it, and the first 90 days. Prepared by Dan Sinni.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;600&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: airport wayfinding. Sticky signage nav, one always-dark departures board as the only loud element, everything else quiet on a 1120px track. */
+:root{
+  --paper:#F2F5F8; --surface:#FFFFFF; --ink:#12202C; --muted:#56656F; --line:#D6DDE4;
+  --accent:#0C56A6; --accent-soft:#E2EBF6; --on-accent:#FFFFFF;
+  --ok:#23824A; --warn:#A86200; --crit:#B23A14;
+  --board:#0C1216; --board-2:#121A20; --board-line:#222D36; --board-ink:#FFC233; --board-dim:#B79A55; --board-text:#E7ECEF;
+  --st-done:#5BD48A; --st-prog:#FFC233; --st-rev:#6CD3E6; --st-inv:#FF8A3D; --st-q:#8593A0;
+  --f-display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --track:1120px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0D141A; --surface:#141E27; --ink:#E4EAEF; --muted:#94A2AE; --line:#26333E;
+  --accent:#7CB2F2; --accent-soft:#18293B; --on-accent:#08121C;
+  --ok:#55C584; --warn:#E8A33A; --crit:#F07A52; --board:#080D10; --board-2:#0E151A; --board-line:#1C252C;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0D141A; --surface:#141E27; --ink:#E4EAEF; --muted:#94A2AE; --line:#26333E;
+  --accent:#7CB2F2; --accent-soft:#18293B; --on-accent:#08121C;
+  --ok:#55C584; --warn:#E8A33A; --crit:#F07A52; --board:#080D10; --board-2:#0E151A; --board-line:#1C252C;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--f-body);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--surface)}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+.wrap{max-width:var(--track);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3,h4{font-family:var(--f-display);font-weight:700;line-height:1.05;text-wrap:balance;margin:0;letter-spacing:.005em}
+h2{font-size:clamp(2rem,4.2vw,2.9rem)}
+h3{font-size:1.45rem;font-weight:600}
+h4{font-size:1.1rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+p{margin:0}
+.lede{color:var(--muted);max-width:62ch;font-size:1.05rem}
+.eyebrow{font:600 .74rem/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;gap:.6em;align-items:center}
+.eyebrow b{background:var(--ink);color:var(--paper);padding:.35em .5em;border-radius:3px;font-weight:600}
+sup.fn{font:600 .66rem/1 var(--f-mono);vertical-align:super;margin-left:1px}
+sup.fn a{text-decoration:none;padding:0 2px;border-radius:3px;background:var(--accent-soft)}
+.num{font-variant-numeric:tabular-nums}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--surface);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:20px;height:60px}
+.brand{font:700 1.35rem/1 var(--f-display);letter-spacing:.02em;color:var(--ink);text-decoration:none;white-space:nowrap}
+.brand span{color:var(--accent)}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+.nav ul::-webkit-scrollbar{display:none}
+.nav ul a{display:block;padding:8px 10px;font:500 .86rem/1 var(--f-body);color:var(--muted);text-decoration:none;white-space:nowrap;border-radius:4px}
+.nav ul a:hover{color:var(--ink);background:var(--paper)}
+.nav ul a.on{color:var(--ink);box-shadow:inset 0 -2px 0 var(--accent);border-radius:0}
+.btn{display:inline-flex;align-items:center;gap:.5em;font:600 .92rem/1 var(--f-body);padding:12px 16px;border-radius:6px;border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);text-decoration:none;cursor:pointer;white-space:nowrap}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn:hover{filter:brightness(1.08)}
+@media (max-width:720px){.nav .btn{display:none}}
+
+/* sections */
+section{padding-block:76px;border-bottom:1px solid var(--line)}
+.sec-head{display:grid;gap:12px;margin-bottom:36px}
+
+/* hero */
+.hero{padding-block:40px 56px}
+.prepared{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font-size:.9rem;color:var(--muted);margin-bottom:28px}
+.tag{font:600 .7rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;padding:6px 8px;border-radius:3px;background:var(--board);color:var(--board-ink)}
+.hero h1{font-size:clamp(2.6rem,6.4vw,4.8rem);max-width:17ch}
+.hero .lede{margin-top:18px;font-size:1.12rem}
+.hero .ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+
+/* departures board */
+.boardwrap{margin-top:44px;display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:0;border-radius:10px;overflow:hidden;background:var(--board);color:var(--board-text);box-shadow:0 1px 0 var(--board-line),0 18px 40px -24px rgba(5,12,18,.55)}
+@media (max-width:900px){.boardwrap{grid-template-columns:1fr}}
+.board{padding:18px 18px 14px;min-width:0}
+.board-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.board-top h3{font:700 1.6rem/1 var(--f-display);color:var(--board-ink);letter-spacing:.06em;text-transform:uppercase}
+.board-top small{font:500 .74rem/1.3 var(--f-mono);color:var(--board-dim);letter-spacing:.08em}
+.brow{display:grid;grid-template-columns:56px minmax(0,1fr) 110px 120px;gap:12px;align-items:center;width:100%;text-align:left;padding:10px 8px;border:0;border-top:1px solid var(--board-line);background:transparent;color:inherit;font:500 .86rem/1.3 var(--f-mono);cursor:pointer}
+.brow.head{cursor:default;font-size:.66rem;letter-spacing:.14em;color:var(--board-dim);text-transform:uppercase;border-top:0;padding-block:6px}
+.brow:not(.head):hover{background:var(--board-2)}
+.brow.sel{background:var(--board-2);box-shadow:inset 3px 0 0 var(--board-ink)}
+.brow .t{color:var(--board-ink)}
+.brow .task{color:#F4F6F7;text-transform:uppercase;letter-spacing:.02em}
+.brow .ag{color:var(--board-dim);font-size:.76rem}
+.st{font:600 .7rem/1 var(--f-mono);letter-spacing:.1em;padding:5px 7px;border-radius:3px;border:1px solid currentColor;justify-self:start;white-space:nowrap}
+.st.done{color:var(--st-done)}.st.prog{color:var(--st-prog)}.st.rev{color:var(--st-rev)}.st.inv{color:var(--st-inv)}.st.q{color:var(--st-q)}
+.st.inv{animation:blink 1.6s steps(2,start) infinite}
+@keyframes blink{50%{opacity:.45}}
+@media (max-width:560px){.brow{grid-template-columns:48px minmax(0,1fr) auto}.brow .ag{display:none}.brow.head span:nth-child(3){display:none}}
+.detail{padding:20px;border-left:1px solid var(--board-line);background:var(--board-2);min-width:0;display:grid;gap:14px;align-content:start}
+@media (max-width:900px){.detail{border-left:0;border-top:1px solid var(--board-line)}}
+.detail .k{font:600 .66rem/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--board-dim);margin-bottom:6px}
+.detail h4{color:#F4F6F7;font-size:1.3rem;text-transform:none;letter-spacing:.01em}
+.detail p,.detail li{font-size:.9rem;color:#CBD3D9}
+.detail ol{margin:0;padding-left:1.2em;display:grid;gap:4px}
+.detail .press{display:inline-block;font:600 .72rem/1 var(--f-mono);color:var(--board-ink);border:1px dashed var(--board-dim);padding:6px 8px;border-radius:3px}
+.detail sup.fn a{background:#1F2A33;color:var(--board-ink)}
+.board-note{font:500 .7rem/1.4 var(--f-mono);color:var(--board-dim);padding:10px 18px 14px;letter-spacing:.04em;grid-column:1/-1;border-top:1px solid var(--board-line)}
+
+/* stat strip */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-top:28px}
+@media (max-width:820px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stat{background:var(--surface);padding:18px 18px 16px;display:grid;gap:6px;align-content:start}
+.stat .who{font:600 .7rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.stat .big{font:700 2.4rem/1 var(--f-display);font-variant-numeric:tabular-nums}
+.stat p{font-size:.86rem;color:var(--muted)}
+
+/* grids */
+.cols3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.cols2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+@media (max-width:860px){.cols3,.cols2{grid-template-columns:1fr}}
+.col{display:grid;gap:10px;align-content:start;min-width:0}
+.col p{color:var(--muted)}
+.col h3{border-top:2px solid var(--ink);padding-top:12px}
+
+.products{margin-top:44px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:860px){.products{grid-template-columns:1fr}}
+.prod{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px;display:grid;gap:8px;align-content:start}
+.prod .pk{font:600 .68rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.prod b{font-family:var(--f-display);font-size:1.35rem;font-weight:700}
+.prod p{font-size:.9rem;color:var(--muted)}
+.prod .opens{font-size:.82rem;color:var(--ink);border-top:1px dashed var(--line);padding-top:8px;margin-top:2px}
+.callout{margin-top:28px;display:flex;gap:14px;align-items:flex-start;background:var(--accent-soft);border-radius:8px;padding:16px 18px}
+.callout b{font-family:var(--f-display);font-size:1.2rem;white-space:nowrap}
+.callout p{font-size:.95rem}
+
+/* pressures */
+.press-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:860px){.press-grid{grid-template-columns:1fr}}
+.pc{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:22px;display:grid;gap:12px;align-content:start}
+.pc .n{font:600 .7rem/1 var(--f-mono);color:var(--muted);letter-spacing:.12em}
+.pc h3{font-size:1.6rem}
+.pc p{color:var(--muted);font-size:.93rem}
+.pc .figs{display:grid;gap:8px;border-top:1px solid var(--line);padding-top:12px}
+.pc .fig{display:flex;gap:12px;align-items:baseline}
+.pc .fig strong{font:700 1.5rem/1 var(--f-display);min-width:5.2ch;font-variant-numeric:tabular-nums}
+.pc .fig span{font-size:.86rem;color:var(--muted)}
+.pc .answer{font-size:.88rem;color:var(--ink);background:var(--paper);border-radius:6px;padding:10px 12px}
+.quote{margin-top:28px;font:600 clamp(1.4rem,2.6vw,1.9rem)/1.2 var(--f-display);max-width:38ch;border-left:3px solid var(--accent);padding-left:18px}
+
+/* stepper */
+.steps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin-bottom:16px}
+@media (max-width:860px){.steps{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.stepbtn{text-align:left;padding:10px 12px;border:1px solid var(--line);background:var(--surface);border-radius:6px;cursor:pointer;color:var(--ink);font:inherit;display:grid;gap:2px}
+.stepbtn i{font:600 .66rem/1 var(--f-mono);font-style:normal;color:var(--muted);letter-spacing:.1em}
+.stepbtn b{font:700 1.08rem/1.1 var(--f-display)}
+.stepbtn.on{border-color:var(--accent);background:var(--accent-soft)}
+.stepbtn.done b{color:var(--muted)}
+.steppanel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:26px;display:grid;gap:22px}
+.steppanel blockquote{margin:0;font:600 clamp(1.25rem,2.3vw,1.6rem)/1.25 var(--f-display);max-width:46ch}
+.steppanel .pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media (max-width:700px){.steppanel .pair{grid-template-columns:1fr}}
+.steppanel .pair div{display:grid;gap:8px;align-content:start}
+.kv{display:grid;gap:8px}
+.kv div{display:grid;gap:2px;padding-left:12px;border-left:2px solid var(--line)}
+.kv b{font-weight:600}
+.kv span{color:var(--muted);font-size:.9rem}
+.stepnav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:16px}
+.stepnav span{font:500 .8rem/1 var(--f-mono);color:var(--muted)}
+.trio{margin-top:28px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media (max-width:860px){.trio{grid-template-columns:1fr}}
+.trio div{display:grid;gap:6px}
+.trio p{color:var(--muted);font-size:.93rem}
+
+/* territory */
+.segs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.segbtn{display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:6px;border:1px solid var(--line);background:var(--surface);cursor:pointer;color:var(--ink);font:600 .92rem/1 var(--f-body)}
+.segbtn code{font:600 .72rem/1 var(--f-mono);color:var(--muted);letter-spacing:.08em}
+.segbtn.on{border-color:var(--accent);background:var(--accent-soft)}
+.segbtn.on code{color:var(--accent)}
+.segpanel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:26px;display:grid;gap:22px}
+.segpanel .row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+@media (max-width:860px){.segpanel .row{grid-template-columns:1fr}}
+.segpanel .row>div{display:grid;gap:6px;align-content:start;min-width:0}
+.segpanel p{color:var(--muted);font-size:.93rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:500 .8rem/1 var(--f-body);padding:7px 10px;border-radius:999px;background:var(--paper);border:1px solid var(--line)}
+.landexp{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 14px;align-items:baseline}
+.landexp b{font:600 .7rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.landexp span{font-size:.93rem}
+.fine{font-size:.82rem;color:var(--muted)}
+
+/* plays */
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:thin}
+.tab{padding:12px 14px;border:0;background:transparent;font:600 .95rem/1 var(--f-body);color:var(--muted);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab.on{color:var(--ink);border-bottom-color:var(--accent)}
+.playpanel{padding-top:24px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:28px}
+@media (max-width:900px){.playpanel{grid-template-columns:1fr}}
+.playpanel .thesis{font:600 1.45rem/1.2 var(--f-display);margin-bottom:6px}
+.meta{display:grid;gap:14px}
+.meta div{display:grid;gap:4px}
+.meta h4{font-size:.78rem;color:var(--muted)}
+.meta ul{margin:0;padding-left:1.1em;display:grid;gap:4px;font-size:.92rem}
+.meta code,.email code{font:500 .82em var(--f-mono);background:var(--accent-soft);color:var(--accent);padding:1px 4px;border-radius:3px}
+.emails{display:grid;gap:12px}
+.email{background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.email header{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:10px 14px;border-bottom:1px solid var(--line);background:var(--paper);font:600 .8rem/1.3 var(--f-mono)}
+.email header span{color:var(--muted)}
+.email .body{padding:14px;display:grid;gap:10px;font-size:.93rem}
+.proofline{display:flex;gap:18px;flex-wrap:wrap;font-size:.88rem;padding-top:4px}
+.proofline b{font-weight:600}
+
+/* battlecards */
+.bc{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.6fr);gap:16px}
+@media (max-width:860px){.bc{grid-template-columns:1fr}}
+.bclist{display:grid;gap:6px;align-content:start}
+.bcbtn{text-align:left;padding:14px;border:1px solid var(--line);border-radius:6px;background:var(--surface);cursor:pointer;color:var(--ink);font:inherit;display:grid;gap:2px}
+.bcbtn b{font:700 1.15rem/1.1 var(--f-display)}
+.bcbtn span{font-size:.84rem;color:var(--muted)}
+.bcbtn.on{border-color:var(--accent);background:var(--accent-soft)}
+.bcpanel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px;display:grid;gap:18px;align-content:start}
+.bcpanel .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+@media (max-width:600px){.bcpanel .grid{grid-template-columns:1fr}}
+.bcpanel h4{font-size:.78rem;color:var(--muted);margin-bottom:6px}
+.bcpanel p{font-size:.93rem}
+.ask{border-top:1px solid var(--line);padding-top:14px}
+.ask p{font:600 1.2rem/1.25 var(--f-display)}
+.pill{font:600 .68rem/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;padding:5px 7px;border-radius:3px;background:var(--paper);border:1px solid var(--line);color:var(--muted)}
+
+/* stalls + meddpicc */
+.stalls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-bottom:48px}
+@media (max-width:860px){.stalls{grid-template-columns:1fr}}
+.stall{background:var(--surface);padding:18px;display:grid;gap:8px;align-content:start}
+.stall h4{text-transform:none;letter-spacing:0;font-size:1.15rem;color:var(--crit)}
+.stall p{font-size:.92rem;color:var(--muted)}
+.medhead{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.med{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:980px){.med{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:540px){.med{grid-template-columns:1fr}}
+.card{position:relative;text-align:left;border:1px solid var(--line);border-radius:8px;background:var(--surface);padding:16px;cursor:pointer;color:var(--ink);font:inherit;display:grid;gap:8px;align-content:start;min-height:210px;transition:transform .25s ease,background .25s}
+.card .L{font:700 2.6rem/1 var(--f-display);color:var(--accent)}
+.card .nm{font:700 1.2rem/1 var(--f-display)}
+.card .sub{font-size:.86rem;color:var(--muted)}
+.card .red{font-size:.82rem;border-top:1px dashed var(--line);padding-top:8px}
+.card .red b{color:var(--crit);font-weight:600}
+.card .flipcue{font:600 .66rem/1 var(--f-mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-top:auto}
+.card.flipped{background:var(--board);color:var(--board-text);border-color:var(--board-line)}
+.card.flipped .L{color:var(--board-ink)}
+.card .back{display:grid;gap:8px}
+.card .back div{display:grid;gap:2px}
+.card .back i{font:600 .62rem/1 var(--f-mono);font-style:normal;letter-spacing:.12em;text-transform:uppercase;color:var(--board-dim)}
+.card .back span{font-size:.84rem;color:#CED6DC}
+.card.pop{transform:rotateY(8deg) scale(.98)}
+.commit{margin-top:20px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--ok);border-radius:8px;padding:16px 18px;font-size:.95rem}
+.commit b{font-family:var(--f-display);font-size:1.15rem;margin-right:6px}
+
+/* operating system */
+.stages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)}
+@media (max-width:860px){.stages{grid-template-columns:1fr}}
+.stage{padding:20px;display:grid;gap:8px;align-content:start;border-right:1px solid var(--line);position:relative}
+.stage:last-child{border-right:0}
+@media (max-width:860px){.stage{border-right:0;border-bottom:1px solid var(--line)}.stage:last-child{border-bottom:0}}
+.stage .code{font:700 2rem/1 var(--f-display);color:var(--accent)}
+.stage p,.stage li{font-size:.9rem;color:var(--muted)}
+.stage ul{margin:0;padding-left:1.1em;display:grid;gap:3px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface);margin-top:28px}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:.92rem}
+th,td{text-align:left;vertical-align:top;padding:12px 16px;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+th{font:600 .7rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:var(--paper)}
+td:first-child{font-weight:600;white-space:nowrap}
+td.wrap1{white-space:normal}
+
+/* about */
+.aboutstats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-bottom:32px}
+@media (max-width:820px){.aboutstats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.aboutstats div{display:grid;gap:4px;border-top:2px solid var(--ink);padding-top:12px}
+.aboutstats strong{font:700 2.4rem/1 var(--f-display);font-variant-numeric:tabular-nums}
+.aboutstats span{font-size:.86rem;color:var(--muted)}
+.why{margin-top:36px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+@media (max-width:860px){.why{grid-template-columns:1fr}}
+.why div{display:grid;gap:10px;align-content:start}
+.why p{color:var(--muted)}
+
+/* 90 days */
+.phases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:900px){.phases{grid-template-columns:1fr}}
+.phase{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px;display:grid;gap:12px;align-content:start}
+.phase .days{font:600 .72rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.phase h3{font-size:1.5rem}
+.phase ul{margin:0;padding-left:1.1em;display:grid;gap:6px;font-size:.91rem}
+.phase .out{background:var(--paper);border-radius:6px;padding:12px;font-size:.88rem;margin-top:auto}
+.phase .out b{display:block;font:600 .66rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.scoreboard{margin-top:16px;background:var(--board);color:var(--board-text);border-radius:10px;padding:20px 22px;display:grid;gap:10px}
+.scoreboard b{font:700 1.3rem/1 var(--f-display);color:var(--board-ink);text-transform:uppercase;letter-spacing:.06em}
+.scoreboard ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 20px;font:500 .84rem/1.4 var(--f-mono)}
+@media (max-width:820px){.scoreboard ul{grid-template-columns:1fr}}
+.scoreboard li::before{content:"\25B8  ";color:var(--board-ink)}
+
+/* next step */
+.next{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;align-items:start}
+@media (max-width:860px){.next{grid-template-columns:1fr}}
+.next h2{font-size:clamp(2.2rem,4.8vw,3.4rem)}
+.contact{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;display:grid;gap:12px}
+.contact .line{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.contact .line span{font:500 .95rem/1.3 var(--f-mono);user-select:all;overflow-wrap:anywhere}
+.copy{font:600 .8rem/1 var(--f-body);padding:8px 10px;border-radius:5px;border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.sources{padding-block:48px 40px;border-bottom:0}
+.sources ol{margin:12px 0 0;padding-left:1.6em;display:grid;gap:6px;font-size:.86rem;color:var(--muted);columns:2;column-gap:40px}
+.sources ol li{break-inside:avoid;margin-bottom:6px}
+@media (max-width:820px){.sources ol{columns:1}}
+.sources li:target{color:var(--ink);background:var(--accent-soft)}
+.disclaimer{margin-top:28px;font-size:.82rem;color:var(--muted);max-width:90ch;border-top:1px solid var(--line);padding-top:18px}
+</style>
+</head>
+<body>
+
+
+<nav class="nav" aria-label="Sections">
+  <div class="wrap">
+    <a class="brand" href="#top">dan<span>sinni</span></a>
+    <ul id="navlist">
+      <li><a href="#top">Overview</a></li>
+      <li><a href="#cognition">Cognition</a></li>
+      <li><a href="#why">Why T&amp;H</a></li>
+      <li><a href="#talk">Talk track</a></li>
+      <li><a href="#territory">Territory</a></li>
+      <li><a href="#plays">Plays</a></li>
+      <li><a href="#competition">Competition</a></li>
+      <li><a href="#deal">Deal</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#plan">90 days</a></li>
+    </ul>
+    <a class="btn" href="#next">Next step</a>
+  </div>
+</nav>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="prepared"><span class="tag">Regional Sales Manager &middot; Travel &amp; Hospitality</span><span>Prepared for <strong>Chris Degnan</strong> and the Cognition leadership team, by Dan Sinni</span></div>
+    <h1>Engineering capacity for the industry where software is the operation</h1>
+    <p class="lede">In travel and hospitality the flight does not leave if the crew system cannot pair a pilot, and the guest does not check in if the property system is down. Here is how I would build and lead the team that makes Devin the engineering capacity behind those systems.</p>
+    <div class="ctas"><a class="btn" href="#plan">See the 90-day plan</a><a class="btn ghost" href="#next">Contact me</a></div>
+
+    <div class="boardwrap" aria-label="Illustrative Devin session board">
+      <div class="board">
+        <div class="board-top"><h3>Devin sessions &middot; Departures</h3><small>SELECT A ROW TO SEE THE WORK</small></div>
+        <div class="brow head" role="presentation"><span>Time</span><span>Task</span><span>Agent</span><span>Status</span></div>
+        <div id="boardrows"></div>
+      </div>
+      <div class="detail" id="boarddetail" aria-live="polite"></div>
+      <div class="board-note">Illustrative sessions at a composite airline and hotel group. Each row maps to a Devin product and a pressure on the next section.</div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><span class="who">Southwest, Dec 2022</span><span class="big num">$800M</span><p>Pre-tax hit after its crew scheduling system was overwhelmed<sup class="fn"><a href="#s11">11</a></sup></p></div>
+      <div class="stat"><span class="who">Delta, Jul 2024</span><span class="big num">$500M</span><p>Lost in five days, with crew tracking disrupted<sup class="fn"><a href="#s12">12</a></sup></p></div>
+      <div class="stat"><span class="who">Mercedes-Benz pilot</span><span class="big num">8 mo &rarr; 8 d</span><p>COBOL modernization estimate after Devin analyzed 200K+ lines<sup class="fn"><a href="#s9">9</a></sup></p></div>
+      <div class="stat"><span class="who">Itaú</span><span class="big num">70%</span><p>Of a scanner vulnerability backlog resolved automatically<sup class="fn"><a href="#s3">3</a></sup></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COGNITION -->
+<section id="cognition">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow"><b>01</b>What I know about Cognition</span><h2>An agent lab built for the enterprise</h2><p class="lede">The company, the product family, and why large travel and hospitality companies buy it.</p></div>
+    <div class="cols3">
+      <div class="col"><h3>The company</h3><p>Cognition describes itself as an applied AI lab building end-to-end software agents. It raised over $2B at a $48B valuation in September 2026<sup class="fn"><a href="#s1">1</a></sup>, with run-rate revenue up from $492M in May to almost $900M<sup class="fn"><a href="#s2">2</a></sup>. Devin writes most of Cognition's own code<sup class="fn"><a href="#s3">3</a></sup>.</p></div>
+      <div class="col"><h3>The difference</h3><p>Cognition invests as much in forward-deployed engineering and AI enablement as in core R&amp;D, accelerates the whole software lifecycle, and absorbs deployment complexity: VPC deployment, permissions for 100,000+ developers, COBOL as well as Python. It is also model-independent, which large buyers value for supplier continuity<sup class="fn"><a href="#s19">19</a></sup>.</p></div>
+      <div class="col"><h3>The motion</h3><p>Usage-based pricing on Agent Compute Units aligns cost with work done, so accounts grow as teams roll Devin out. Cognition guarantees Devin delivers at least as much engineering value as a customer consumes<sup class="fn"><a href="#s8">8</a></sup>. Customers include Citi, NVIDIA and GE Aerospace<sup class="fn"><a href="#s2">2</a></sup>.</p></div>
+    </div>
+
+    <div class="products">
+      <div class="prod"><span class="pk">Async agent</span><b>Devin</b><p>Cloud agent that plans, writes, tests and opens PRs in parallel sessions, each in its own VM. Runs single-tenant on AWS in the region the customer picks<sup class="fn"><a href="#s10">10</a></sup>.</p><p class="opens">Opens with VPs of Engineering carrying a backlog</p></div>
+      <div class="prod"><span class="pk">Understand</span><b>DeepWiki</b><p>Indexes codebases into documentation and search engineers can query in plain language.</p><p class="opens">Opens with architects facing a modernization estimate</p></div>
+      <div class="prod"><span class="pk">IDE</span><b>Devin Desktop</b><p>The next generation of Windsurf: a full IDE with an agent command center that also runs Codex and Claude Agent through ACP<sup class="fn"><a href="#s4">4</a></sup>.</p><p class="opens">Opens with developer experience leads</p></div>
+      <div class="prod"><span class="pk">Quality</span><b>Devin Review</b><p>Organizes large diffs and catches bugs so human review scales with agent output.</p><p class="opens">Opens with platform and quality leaders</p></div>
+      <div class="prod"><span class="pk">Operations</span><b>Devin Oncall</b><p>Launched October 15: investigates alerts and bugs and can prepare a fix for review<sup class="fn"><a href="#s6">6</a></sup>, building on the TierZero acquisition<sup class="fn"><a href="#s5">5</a></sup>.</p><p class="opens">Opens with SRE and operations technology</p></div>
+      <div class="prod"><span class="pk">Security</span><b>Vulnerability Program</b><p>FDEs embed, connect existing scanners, burn down the known backlog, then run Security Swarm for what scanners miss<sup class="fn"><a href="#s7">7</a></sup>.</p><p class="opens">Opens with CISOs and AppSec leads</p></div>
+    </div>
+    <div class="callout"><b>Timely</b><p>Devin Oncall shipped this week, and the AWS partnership puts Devin on AWS Marketplace with single-tenant deployment<sup class="fn"><a href="#s10">10</a></sup>. Both give every travel and hospitality follow-up something new to show an operations or procurement leader this quarter.</p></div>
+  </div>
+</section>
+
+<!-- WHY T&H -->
+<section id="why">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow"><b>02</b>Why Travel &amp; Hospitality</span><h2>Three pressures every executive in this industry feels</h2><p class="lede">None of them is a coding problem. They are capacity, risk and speed problems, and Devin is strongest exactly where this industry is weakest: old code, security debt and incident response.</p></div>
+    <div class="press-grid">
+      <div class="pc"><span class="n">PRESSURE 1</span><h3>Downtime is a P&amp;L event</h3><p>Boards remember the numbers. An IT failure at an airline or resort shows up in the quarter, the stock and a DOT or regulator inquiry.</p>
+        <div class="figs"><div class="fig"><strong>$800M</strong><span>Southwest Q4 2022 pre-tax impact<sup class="fn"><a href="#s11">11</a></sup></span></div><div class="fig"><strong>$500M</strong><span>Delta, five days after CrowdStrike<sup class="fn"><a href="#s12">12</a></sup></span></div></div>
+        <p class="answer"><b>Devin's answer:</b> Devin Oncall investigates alerts and prepares fixes, and peak-season freezes stop eating the roadmap.</p></div>
+      <div class="pc"><span class="n">PRESSURE 2</span><h3>The oldest code runs the most revenue</h3><p>The four largest US airlines rely on TPF in some form<sup class="fn"><a href="#s15">15</a></sup>, and fewer people can change it every year. Hotels face a forced move: OPERA 5.6 Premier Support ends December 2027<sup class="fn"><a href="#s16">16</a></sup>.</p>
+        <div class="figs"><div class="fig"><strong>1960s</strong><span>Roots of the reservation tech still in use<sup class="fn"><a href="#s15">15</a></sup></span></div><div class="fig"><strong>2027</strong><span>OPERA 5.6 Premier Support ends<sup class="fn"><a href="#s16">16</a></sup></span></div></div>
+        <p class="answer"><b>Devin's answer:</b> DeepWiki maps the legacy code, then Devin migrates and tests in parallel.</p></div>
+      <div class="pc"><span class="n">PRESSURE 3</span><h3>The risk surface grows faster than teams</h3><p>Guest and traveler data makes this industry a target, and AI agents now book travel directly. Brands without agent-ready APIs risk losing the sale<sup class="fn"><a href="#s17">17</a></sup>.</p>
+        <div class="figs"><div class="fig"><strong>$100M</strong><span>MGM Resorts cyberattack impact<sup class="fn"><a href="#s13">13</a></sup></span></div><div class="fig"><strong>20 yrs</strong><span>Marriott FTC security order<sup class="fn"><a href="#s14">14</a></sup></span></div></div>
+        <p class="answer"><b>Devin's answer:</b> the Vulnerability Program clears the backlog, and Devin builds the API backlog agents need.</p></div>
+    </div>
+    <p class="quote">Devin adds engineering capacity without adding headcount. That is the sentence every T&amp;H conversation should end on.</p>
+  </div>
+</section>
+
+<!-- TALK TRACK -->
+<section id="talk">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow"><b>03</b>Talk track</span><h2>The conversation with a CIO at an airline or hotel group</h2><p class="lede">A Challenger meeting runs in a set order. Step through what my team and I would bring to a first executive meeting, with the evidence behind each step.</p></div>
+    <div class="steps" id="steps" role="tablist" aria-label="Talk track steps"></div>
+    <div class="steppanel" id="steppanel" aria-live="polite"></div>
+    <div class="trio">
+      <div><h4>Teach</h4><p>The first meeting changes how they think about engineering capacity. The demo comes after they agree headcount and SI contracts will not close the gap.</p></div>
+      <div><h4>Tailor</h4><p>Outage risk for the COO, modernization timelines for the CIO, the backlog and audit trail for the CISO, and cost per completed task for finance.</p></div>
+      <div><h4>Take control</h4><p>Price the next outage, push back on "we will wait for the SI," and leave every meeting with a dated next step and a named use case.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TERRITORY -->
+<section id="territory">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow"><b>04</b>Territory</span><h2>Where the team would spend its time</h2><p class="lede">Travel and hospitality splits into segments with different buyers, different stacks and different reasons to act. Select a segment.</p></div>
+    <div class="segs" id="segs" role="tablist" aria-label="Segments"></div>
+    <div class="segpanel" id="segpanel" aria-live="polite"></div>
+    <p class="fine" style="margin-top:12px">Accounts are illustrative and drawn from public information. I would confirm named accounts, current customers and partner overlap with the team before any outreach.</p>
+  </div>
+</section>
+
+<!-- PLAYS -->
+<section id="plays">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow"><b>05</b>Plays</span><h2>Four plays for the first quarter</h2><p class="lede">Each play starts from data the AE pulls on the account, leads with one specific question and runs as a three-email sequence. Every AE runs the same plays so we can see what converts.</p></div>
+    <div class="tabs" id="playtabs" role="tablist" aria-label="Plays"></div>
+    <div id="playpanel"></div>
+  </div>
+</section>
+
+<!-- COMPETITION -->
+<section id="competition">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow"><b>06</b>Competition</span><h2>How deals are won against each alternative</h2><p class="lede">Where each option is strong, where Devin wins, and the question the AE asks in discovery. Select an alternative to open its battlecard.</p></div>
+    <div class="bc"><div class="bclist" id="bclist"></div><div class="bcpanel" id="bcpanel" aria-live="polite"></div></div>
+  </div>
+</section>
+
+<!-- DEAL -->
+<section id="deal">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow"><b>07</b>Deal</span><h2>Where these deals stall, and how we qualify them</h2><p class="lede">Six stalls we plan for from the first meeting, and the MEDDPICC checklist every opportunity runs against.</p></div>
+    <div class="stalls">
+      <div class="stall"><h4>"Our code is too old and too custom"</h4><p>We start with DeepWiki on one TPF or COBOL module in week one, with no code changes, and show the Mercedes-Benz result<sup class="fn"><a href="#s9">9</a></sup>.</p></div>
+      <div class="stall"><h4>"Security won't let an agent near this"</h4><p>Single-tenant on AWS, each session in its own VM, every change as a reviewed PR<sup class="fn"><a href="#s10">10</a></sup>. The CISO joins at M2, not at signature.</p></div>
+      <div class="stall"><h4>"Not during peak season"</h4><p>We time the land for shoulder season and start with work that never touches a peak release: documentation, tests and security fixes.</p></div>
+      <div class="stall"><h4>The pilot drifts</h4><p>No open-ended pilots. One use case, written success criteria and the expansion terms agreed before work starts.</p></div>
+      <div class="stall"><h4>Usage pricing worries finance</h4><p>We forecast ACU consumption from the first six weeks and lead with Cognition's value guarantee<sup class="fn"><a href="#s8">8</a></sup>.</p></div>
+      <div class="stall"><h4>Only engineers are involved</h4><p>The CIO or COO is in the room by M2, and the business case prices outage hours, consultant spend and open reqs.</p></div>
+    </div>
+    <div class="medhead"><div><h3>MEDDPICC checklist</h3><p class="fine">Updated after every call and reviewed with each AE weekly. Select a letter to flip it to the proof required before a deal counts in the forecast.</p></div><button class="btn ghost" id="flipall" type="button">Flip all</button></div>
+    <div class="med" id="med"></div>
+    <div class="commit"><b>Commit rule</b>A deal enters commit only when the economic buyer has confirmed the metrics, the use case has met written success criteria, the paper process is dated in a mutual plan, and the champion has been tested.</div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow"><b>08</b>Running the team</span><h2>How I would run the region</h2><p class="lede">One stage language, one cadence and one forecast rule, so every AE, SE and forward-deployed engineer knows where a deal stands without a meeting.</p></div>
+    <div class="stages">
+      <div class="stage"><span class="code">M1</span><h3>Discovery with pain</h3><ul><li>Named pain tied to cost, risk or a date</li><li>Use case picked: legacy, security, incidents or APIs</li><li>Champion identified and mapped</li></ul></div>
+      <div class="stage"><span class="code">M2</span><h3>Technical validation</h3><ul><li>Economic buyer met and metrics confirmed</li><li>Success criteria written with SE and FDE</li><li>Security review started</li></ul></div>
+      <div class="stage"><span class="code">M3</span><h3>Business case and paper</h3><ul><li>ACU forecast and business case agreed</li><li>Mutual action plan dated back from signature</li><li>Expansion path written into the first order</li></ul></div>
+    </div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Cadence</th><th>What happens</th><th>Why it matters</th></tr></thead>
+      <tbody>
+        <tr><td>Monday forecast</td><td class="wrap1">Each AE calls commit and best case against the commit rule. Every gap gets an owner and a date.</td><td class="wrap1">No surprises at quarter end</td></tr>
+        <tr><td>Weekly deal review</td><td class="wrap1">Top ten opportunities walked through MEDDPICC with the SE and FDE lead.</td><td class="wrap1">Deals move M1 to M3 faster</td></tr>
+        <tr><td>Pipeline block</td><td class="wrap1">Two hours a week per AE on the four plays, tracked as self-sourced pipeline.</td><td class="wrap1">Pipeline is built, not inherited</td></tr>
+        <tr><td>1:1 coaching</td><td class="wrap1">Call review and one skill per AE per month: discovery, multithreading or negotiation.</td><td class="wrap1">Reps get better every month</td></tr>
+        <tr><td>Monthly with FDEs</td><td class="wrap1">Usage by account, expansion candidates and at-risk deployments.</td><td class="wrap1">Usage turns into expansion</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow"><b>09</b>About</span><h2>Why I'm a fit for this role</h2><p class="lede">Twenty years selling complex technology to enterprise engineering and security buyers, building vertical teams, and selling modernization with AI before it had a category name.</p></div>
+    <div class="aboutstats">
+      <div><strong>$9M+</strong><span>ARR in a single account landed at Honeycomb</span></div>
+      <div><strong>$60M</strong><span>Qualified pipeline from an AI-assisted modernization practice I co-built</span></div>
+      <div><strong>2x</strong><span>Quota as an IC at Pivotal, and 150%+ as a manager</span></div>
+      <div><strong>6 + 3</strong><span>AEs and SDRs on the first FSI vertical team I built</span></div>
+    </div>
+    <div class="tablewrap" style="margin-top:0"><table>
+      <thead><tr><th>What the role asks for</th><th>Where I have done it</th></tr></thead>
+      <tbody>
+        <tr><td>Build and lead a vertical team</td><td class="wrap1">Built Honeycomb's first Financial Services and Insurance team from zero: six AEs and three SDRs, with a direct quota.</td></tr>
+        <tr><td>$1M+ deals with CIO and CTO buyers</td><td class="wrap1">Landed a single account above $9M ARR at Honeycomb, sold through architecture, security and procurement.</td></tr>
+        <tr><td>Sell modernization with AI</td><td class="wrap1">Co-built an AI-assisted modernization practice at Publicis Sapient: $7M in year one and $60M in qualified pipeline.</td></tr>
+        <tr><td>Exceed targets</td><td class="wrap1">2x quota as an IC and 150%+ as a manager at Pivotal.</td></tr>
+        <tr><td>Win the security review</td><td class="wrap1">CISSP and CIPP certified. FSI has the heaviest security review in enterprise software, and that is where I have sold.</td></tr>
+        <tr><td>Understand AI from the builder's side</td><td class="wrap1">Co-founded N-Tier Discovery, an AI/ML startup acquired in 2012.</td></tr>
+        <tr><td>Sell across industries</td><td class="wrap1">Deloitte, Dell EMC, Pivotal and VMware Tanzu, Atos and Eviden, Publicis Sapient and Honeycomb.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="why">
+      <div><h3>Why travel and hospitality from FSI</h3><p>FSI is the hardest buyer in enterprise software: the heaviest security review, the most legacy debt and the longest cycles. Travel and hospitality shares all three, with TPF instead of COBOL cores and PCI and FTC orders instead of bank regulators. What transfers is the motion: selling to engineering leaders, multithreading large organizations, getting through risk review and turning modernization into a business case.</p></div>
+      <div><h3>Why Cognition</h3><p>Most AI coding tools sell seats to developers. Cognition sells finished engineering work to the enterprise and backs it with forward-deployed engineers, which is the motion I have run for a decade in cloud-native and AI-assisted modernization. Devin's usage grows with outcomes, so a good land in this industry becomes a large account, and this industry has more legacy code and peak-season risk than almost any other.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 90 DAYS -->
+<section id="plan">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow"><b>10</b>The first 90 days</span><h2>Front-loaded, with something to inspect at every gate</h2><p class="lede">Deals in flight first, the team second, new logos from week one, and a forecast leadership can trust by day 90.</p></div>
+    <div class="phases">
+      <div class="phase"><span class="days">Days 1 to 30</span><h3>Inherit, assess, activate</h3><ul>
+        <li>Review every inherited opportunity with its AE in week one; confirm stage, champion, next step and close plan</li>
+        <li>1:1s with every AE, SE and FDE partner; a SWOT for each rep and for the team</li>
+        <li>Meet sales, FDE, marketing, partnerships and product leaders</li>
+        <li>Tier the top 20 accounts and map each to a reference customer and a warm path through Cognition's investor network</li>
+        <li>Hands on with Devin, DeepWiki, Devin Review, Devin Desktop and Devin Oncall</li>
+        <li>Launch the four plays with every AE; stand up the reporting baseline</li></ul>
+        <div class="out"><b>Visible output</b>Close plan on every in-flight deal, team SWOT reviewed, top 20 mapped, M1 targets set per AE</div></div>
+      <div class="phase"><span class="days">Days 31 to 60</span><h3>Land and build the playbook</h3><ul>
+        <li>Close the in-flight deals that are ready and turn each win into a reference</li>
+        <li>Ship one-page segment theses for airlines, hotels, gaming and online travel</li>
+        <li>Build the proof pack: Mercedes-Benz, Itaú and the automaker COBOL story mapped to T&amp;H systems</li>
+        <li>Certify every rep on the talk track; run insight meetings, not first-call demos</li>
+        <li>Plan peak-season timing into every mutual action plan</li>
+        <li>Open recruiting for the next hires, screening for grit and self-sourcing</li></ul>
+        <div class="out"><b>Visible output</b>First lands in production, tested messaging, segment theses and a hiring slate</div></div>
+      <div class="phase"><span class="days">Days 61 to 90</span><h3>Accelerate and forecast</h3><ul>
+        <li>Move qualified deals from M1 to M3 with an executive sponsor on each</li>
+        <li>Every active deal multithreaded, with MEDDPICC gaps closed or flagged</li>
+        <li>A forecast built on stage criteria, the commit rule and dated next steps</li>
+        <li>Expansion plans for every landed account, using ACU usage trends</li>
+        <li>Joint plays with AWS and SI partners on the largest modernization programs</li>
+        <li>Share what works with the other verticals</li></ul>
+        <div class="out"><b>Visible output</b>A defensible forecast, faster stage progression and expansion paths in every land</div></div>
+    </div>
+    <div class="scoreboard"><b>90-day scoreboard</b><ul>
+      <li>Close plan on every inherited deal</li><li>Top 20 accounts mapped to a reference and warm path</li><li>Four plays live with every AE</li>
+      <li>First T&amp;H lands referenceable</li><li>Commit rule used on every forecast call</li><li>Targets set with my manager by day 30</li></ul></div>
+  </div>
+</section>
+
+<!-- NEXT -->
+<section id="next">
+  <div class="wrap next">
+    <div class="sec-head" style="margin:0"><span class="eyebrow"><b>11</b>Next step</span><h2>I'd like to walk the team through this plan and hear where it's wrong.</h2><p class="lede">Every segment, play and number here is a starting hypothesis. The fastest way to improve it is with the people who sell Devin every day.</p></div>
+    <div class="contact">
+      <div class="line"><span id="email">dan.sinni@gmail.com</span><button class="copy" type="button" data-copy="email">Copy email</button></div>
+      <p class="fine">Dan Sinni &middot; Philadelphia Main Line</p>
+    </div>
+  </div>
+</section>
+
+<section class="sources" id="sources">
+  <div class="wrap">
+    <h4>Sources</h4>
+    <ol>
+      <li id="s1"><a href="https://www.lw.com/en/news/2026/09/latham-watkins-advises-cognition-on-series-e" target="_blank" rel="noopener">Latham &amp; Watkins, Cognition US$2B-plus Series E</a></li>
+      <li id="s2"><a href="https://dealroom.co/news/149496-cognition-raises-2b-series-e-at-48b-valuation-to-scale-devin/" target="_blank" rel="noopener">Dealroom, Cognition raises $2B Series E at $48B</a></li>
+      <li id="s3"><a href="https://www.sourcery.vc/p/breaking-devin-writes-95-of-our-code" target="_blank" rel="noopener">Sourcery, Devin writes 95% of our code (Mercedes-Benz and Itaú)</a></li>
+      <li id="s4"><a href="https://www.plushcap.com/content/windsurf/blog/windsurf-windsurf-is-now-devin-desktop" target="_blank" rel="noopener">Windsurf is now Devin Desktop</a></li>
+      <li id="s5"><a href="https://cognition.com/blog/welcoming-tierzero" target="_blank" rel="noopener">Cognition, Welcoming TierZero</a></li>
+      <li id="s6"><a href="https://runtimewire.com/article/cognition-devin-oncall-production-incidents" target="_blank" rel="noopener">RuntimeWire, Cognition launches Devin Oncall</a></li>
+      <li id="s7"><a href="https://cognition.com/blog/devin-security-vulnerability-remediation-program" target="_blank" rel="noopener">Cognition, Devin Security Vulnerability Remediation Program</a></li>
+      <li id="s8"><a href="https://devin.ai/security-program" target="_blank" rel="noopener">Devin, Security Vulnerability Remediation Program and value guarantee</a></li>
+      <li id="s9"><a href="https://cognition.com/blog/mercedes-benz-cognition" target="_blank" rel="noopener">Cognition, Mercedes-Benz partners with Cognition</a></li>
+      <li id="s10"><a href="https://cognition.com/blog/aws-sca" target="_blank" rel="noopener">Cognition, Cognition and AWS team up</a></li>
+      <li id="s11"><a href="https://www.axios.com/2023/01/26/southwest-meltdown-q4-earnings-loss" target="_blank" rel="noopener">Axios, Southwest lost $800 million from cancellation meltdown</a></li>
+      <li id="s12"><a href="https://www.npr.org/2024/07/31/nx-s1-5058652/delta-crowdstrike-outage-500-million-dollars" target="_blank" rel="noopener">NPR, Delta's CEO says the CrowdStrike outage cost $500 million in 5 days</a></li>
+      <li id="s13"><a href="https://bleepingcomputer.com/news/security/mgm-resorts-ransomware-attack-led-to-100-million-loss-data-theft/" target="_blank" rel="noopener">BleepingComputer, MGM Resorts attack led to $100 million loss</a></li>
+      <li id="s14"><a href="https://www.bleepingcomputer.com/news/security/ftc-orders-marriott-and-starwood-to-implement-strict-data-security/" target="_blank" rel="noopener">BleepingComputer, FTC orders Marriott and Starwood to implement strict data security</a></li>
+      <li id="s15"><a href="https://www.entrepreneur.com/business-news/more-airline-outages-seen-as-carriers-grapple-with-aging/280757" target="_blank" rel="noopener">Reuters via Entrepreneur, Airlines grapple with aging technology</a></li>
+      <li id="s16"><a href="https://chatlyn.com/en/blog/opera-5-to-opera-cloud-migration/" target="_blank" rel="noopener">Chatlyn, Moving from OPERA 5 to OPERA Cloud</a></li>
+      <li id="s17"><a href="https://skift.com/2026/02/12/sabre-paypal-mindtrip-agentic-ai-travel-booking-announcement/" target="_blank" rel="noopener">Skift, Sabre, PayPal and Mindtrip partner on agentic travel booking</a></li>
+      <li id="s18"><a href="https://stellagent.ai/insights/agentic-commerce-travel-industry-battle" target="_blank" rel="noopener">Stellagent, Agentic commerce reshapes the travel industry</a></li>
+      <li id="s19">Russell Kaplan, post on X on startup differentiation versus the labs, April 2026</li>
+      <li id="s20"><a href="https://newmarketpitch.com/blogs/news/ai-code-assistant-cognition-update" target="_blank" rel="noopener">New Market Pitch, How's Cognition doing these days? (SI partnerships)</a></li>
+    </ol>
+    <p class="disclaimer">Independent research prepared by Dan Sinni for the Regional Sales Manager, Travel and Hospitality role. Not affiliated with or endorsed by Cognition. Figures come from public and third-party sources as of October 2026. The session board, example accounts and emails are illustrative.</p>
+  </div>
+</section>
+</main>
+
+<script>
+(function(){
+const fn = n => `<sup class="fn"><a href="#s${n}">${n}</a></sup>`;
+const fns = arr => arr.map(fn).join("");
+
+/* ---------- Departures board ---------- */
+const BOARD = [
+ {t:"06:12",task:"Document PNR and fare modules",agent:"DeepWiki",sys:"Reservations on TPF",st:"COMPLETE",c:"done",
+  trig:"An architect needs a map of the fare-quote path before anyone will sign a modernization estimate.",
+  steps:["Indexes decades of Assembler and TPF-C across repositories","Writes queryable docs: data flows, business rules and owners","Flags dead code and undocumented interline logic"],
+  human:"The reservations architect reviews and corrects the map.",
+  out:"Discovery takes days instead of a quarter of consultant hours.",press:"The oldest code runs the most revenue",src:[9,15]},
+ {t:"06:18",task:"Burn down Fortify backlog",agent:"Devin",sys:"Loyalty platform",st:"IN PROGRESS",c:"prog",
+  trig:"A scanner export lands with over a thousand open findings, many older than six months.",
+  steps:["Ingests the scanner report and groups findings by pattern","Opens one PR per fix with tests and a validation note","Runs many sessions in parallel, each in its own VM"],
+  human:"The AppSec lead approves PRs in batches.",
+  out:"The backlog trends toward zero, with evidence ready for PCI and the board.",press:"The risk surface grows faster than teams",src:[7,3]},
+ {t:"06:24",task:"Rebuild OXI interfaces on OHIP",agent:"Devin",sys:"Property mgmt",st:"IN REVIEW",c:"rev",
+  trig:"OPERA 5.6 Premier Support ends in December 2027 and point-to-point OXI interfaces must move to OHIP.",
+  steps:["Maps each OXI interface and the events it depends on","Writes the OHIP version with contract tests","Devin Review groups the diff so reviewers see intent first"],
+  human:"The integration lead reviews and schedules cutover outside peak.",
+  out:"The migration is paced by review capacity instead of typing.",press:"The oldest code runs the most revenue",src:[16]},
+ {t:"06:31",task:"Triage crew-pairing latency alert",agent:"Devin Oncall",sys:"Ops control",st:"INVESTIGATING",c:"inv",
+  trig:"An alert fires during a weather event: crew-pairing API latency is over its objective.",
+  steps:["Pulls logs, traces and recent deploys","Traces the slowdown to one configuration change","Prepares a rollback PR for the on-call engineer"],
+  human:"The on-call engineer approves the fix.",
+  out:"The incident bridge starts with a root-cause candidate in hand.",press:"Downtime is a P&L event",src:[6,5,12]},
+ {t:"06:40",task:"Ship agent-ready rate API",agent:"Devin",sys:"Distribution",st:"QUEUED",c:"q",
+  trig:"The digital team needs AI shopping agents to price and book direct inventory.",
+  steps:["Documents current rate and availability services","Builds a versioned endpoint with tests and rate limits","Drafts the developer docs agents will read"],
+  human:"The product owner sets scope and guardrails.",
+  out:"Direct inventory is visible to the agents now booking travel.",press:"The risk surface grows faster than teams",src:[17,18]}
+];
+const rowsEl=document.getElementById("boardrows"), detEl=document.getElementById("boarddetail");
+rowsEl.innerHTML = BOARD.map((r,i)=>`<button class="brow" type="button" data-i="${i}" aria-pressed="false"><span class="t num">${r.t}</span><span class="task">${r.task}</span><span class="ag">${r.agent}</span><span class="st ${r.c}">${r.st}</span></button>`).join("");
+function showBoard(i){
+  const r=BOARD[i];
+  rowsEl.querySelectorAll(".brow").forEach((b,j)=>{b.classList.toggle("sel",j===i);b.setAttribute("aria-pressed",j===i)});
+  detEl.innerHTML=`<div><div class="k">${r.agent} &middot; ${r.sys}</div><h4>${r.task}</h4></div>
+   <div><div class="k">Trigger</div><p>${r.trig}</p></div>
+   <div><div class="k">What Devin does</div><ol>${r.steps.map(s=>`<li>${s}</li>`).join("")}</ol></div>
+   <div><div class="k">Human role</div><p>${r.human}</p></div>
+   <div><div class="k">Outcome</div><p>${r.out}${fns(r.src)}</p></div>
+   <span class="press">Pressure: ${r.press}</span>`;
+}
+rowsEl.addEventListener("click",e=>{const b=e.target.closest(".brow");if(b)showBoard(+b.dataset.i)});
+showBoard(0);
+
+/* ---------- Talk track ---------- */
+const STEPS=[
+ {k:"Warmer",d:"Show we know their world",say:"Every leader I meet in this industry tells me the same thing: the systems that make the most money are the ones the fewest people can change.",
+  a:["What we establish",[["Capacity gap","The backlog grows faster than hiring"],["Peak freeze","The best engineers spend peak season guarding, not building"]]],
+  b:["The assumption we challenge",[["From","We need more engineers or a bigger SI contract"],["To","We need engineering capacity that scales with the backlog"]]]},
+ {k:"Reframe",d:"Challenge the assumption",say:"Hiring cannot close this gap. TPF and OPERA skills are retiring faster than anyone can replace them, and SI contracts bill for discovery hours.",
+  a:["The new frame",[["Engineers as architects","Humans decide what to build and approve the work"],["Agents as capacity","Execution runs in parallel, around the clock"]]],
+  b:["Evidence",[["Four largest US airlines","Rely on TPF in some form"+fn(15)],["OPERA 5.6","Premier Support ends December 2027"+fn(16)]]]},
+ {k:"Rational drowning",d:"Make the cost concrete",say:"Let's put a number on what one bad week costs, because your board already has.",
+  a:["The data",[["$800M","Southwest, holiday 2022"+fn(11)],["$500M in five days","Delta after CrowdStrike"+fn(12)]]],
+  b:["And the risk side",[["$100M","MGM Resorts cyberattack"+fn(13)],["20 years","Marriott FTC security order"+fn(14)]]]},
+ {k:"Emotional impact",d:"Make it personal",say:"When the crew system or the property system goes down, who is in the room explaining it to the board?",
+  a:["Why it matters personally",[["Board exposure","Outages become a CEO and board story within hours"],["Talent","The best engineers burn out on pager duty and peak freezes"]]],
+  b:["What they want instead",[["Predictable peaks","Fewer, shorter incidents"],["A roadmap that moves","Modernization that does not wait another year"]]]},
+ {k:"A new way",d:"Describe the better model",say:"Picture a team that understands every line of the legacy code, fixes vulnerabilities while you sleep, and starts every incident with a root cause in hand.",
+  a:["What better looks like",[["Understand","DeepWiki maps the legacy estate"],["Execute","Devin works the backlog in parallel sessions"]]],
+  b:["And keeps it safe",[["Review","Devin Review keeps quality high as volume grows"],["Respond","Devin Oncall investigates alerts"+fn(6)]]]},
+ {k:"Our solution",d:"Show why Cognition",say:"This is already working at companies with code as old and as critical as yours.",
+  a:["The proof",[["8 months to 8 days","Mercedes-Benz COBOL modernization estimate"+fn(9)],["70%","Itaú vulnerability backlog resolved automatically"+fn(3)]]],
+  b:["How we deliver",[["73% lower cost","Automaker COBOL workflow moved to AWS Lambda"+fn(10)],["Forward-deployed engineers","Embedded with your team, single-tenant on AWS"+fn(10)]]]}
+];
+const stepsEl=document.getElementById("steps"), spEl=document.getElementById("steppanel");
+stepsEl.innerHTML=STEPS.map((s,i)=>`<button class="stepbtn" type="button" role="tab" data-i="${i}"><i>STEP ${i+1}</i><b>${s.k}</b></button>`).join("");
+const kv=g=>`<div><h4>${g[0]}</h4><div class="kv">${g[1].map(x=>`<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join("")}</div></div>`;
+function showStep(i){
+  const s=STEPS[i];
+  stepsEl.querySelectorAll(".stepbtn").forEach((b,j)=>{b.classList.toggle("on",j===i);b.classList.toggle("done",j<i);b.setAttribute("aria-selected",j===i)});
+  spEl.innerHTML=`<div class="eyebrow">Step ${i+1} &middot; ${s.d}</div><blockquote>"${s.say}"</blockquote><div class="pair">${kv(s.a)}${kv(s.b)}</div>
+   <div class="stepnav"><button class="btn ghost" type="button" id="sprev" ${i===0?"disabled":""}>Back</button><span>Step ${i+1} of ${STEPS.length}</span><button class="btn" type="button" id="snext">${i===STEPS.length-1?"Start over":"Next step"}</button></div>`;
+  document.getElementById("sprev").onclick=()=>showStep(Math.max(0,i-1));
+  document.getElementById("snext").onclick=()=>showStep(i===STEPS.length-1?0:i+1);
+}
+stepsEl.addEventListener("click",e=>{const b=e.target.closest(".stepbtn");if(b)showStep(+b.dataset.i)});
+showStep(0);
+
+/* ---------- Territory ---------- */
+const SEGS=[
+ {code:"AIR",name:"Airlines",who:"CIO, SVP Operations Technology, VP Commercial Technology, CISO",
+  stack:"TPF-based passenger service systems, crew and ops platforms, revenue management, loyalty and mobile apps.",
+  why:"Outage precedents at Southwest and Delta"+fn(11)+fn(12)+", retiring TPF talent"+fn(15)+", and AI agents arriving in distribution.",
+  land:"DeepWiki on one PSS or ops module, or Devin Oncall on one operations service",
+  exp:"Modernization program, security backlog, test coverage across ops systems",
+  acc:["American","Delta","United","Southwest","Alaska","JetBlue"]},
+ {code:"HTL",name:"Hotels & resorts",who:"CIO, CISO, VP Property Technology, Chief Digital Officer",
+  stack:"OPERA on-premise moving to OPERA Cloud, central reservations, loyalty, brand websites and apps.",
+  why:"OPERA 5.6 Premier Support ends December 2027"+fn(16)+", the Marriott FTC order raised the security bar"+fn(14)+", and Google is building agentic booking with major brands"+fn(18)+".",
+  land:"Vulnerability backlog burn-down, or the OXI-to-OHIP interface migration",
+  exp:"Brand apps, agent-ready APIs, loyalty modernization",
+  acc:["Marriott","Hilton","Hyatt","IHG","Wyndham","Choice"]},
+ {code:"GAM",name:"Gaming & resorts",who:"CIO, CISO, VP Gaming Systems, VP Digital",
+  stack:"Casino management systems, hotel PMS, sportsbook and iGaming apps that release weekly.",
+  why:"The MGM attack cost about $100M"+fn(13)+", and iGaming competes on release speed.",
+  land:"Vulnerability remediation plus incident triage",
+  exp:"iGaming feature velocity, test generation, platform migrations",
+  acc:["MGM Resorts","Caesars","Wynn","Las Vegas Sands","PENN"]},
+ {code:"OTA",name:"Online travel",who:"CTO, VP Engineering, Head of Platform",
+  stack:"Large cloud codebases with hundreds of services and constant experimentation.",
+  why:"AI agents are becoming the shopping front door"+fn(17)+fn(18)+", and engineering cost is under pressure.",
+  land:"Devin Review and framework migrations across many repositories",
+  exp:"Platform-wide automations, Devin Desktop for every developer",
+  acc:["Expedia Group","Booking Holdings","Airbnb","Tripadvisor","Hopper"]},
+ {code:"GDS",name:"Travel technology",who:"CTO, SVP Engineering, product line leaders",
+  stack:"TPF and open systems behind APIs that serve hundreds of airlines and hotels.",
+  why:"Agentic booking now runs on these APIs"+fn(17)+", while mainframe exit programs run for years.",
+  land:"Legacy documentation and API test generation",
+  exp:"Modernization factory, often delivered with an SI partner"+fn(20),
+  acc:["Sabre","Amadeus","Navitaire","Travelport"]},
+ {code:"CRZ",name:"Cruise & mobility",who:"CIO, VP Digital, CISO",
+  stack:"Reservation cores, shipboard systems, rental fleet and mobile platforms.",
+  why:"Guest and payment data at scale, and mobile apps that sell onboard and at the counter.",
+  land:"Security backlog and mobile app backlog",
+  exp:"Reservation modernization and integration work",
+  acc:["Carnival","Royal Caribbean","Norwegian","Hertz","Avis Budget","Enterprise Mobility"]}
+];
+const segsEl=document.getElementById("segs"), segP=document.getElementById("segpanel");
+segsEl.innerHTML=SEGS.map((s,i)=>`<button class="segbtn" type="button" role="tab" data-i="${i}"><code>${s.code}</code>${s.name}</button>`).join("");
+function showSeg(i){
+  const s=SEGS[i];
+  segsEl.querySelectorAll(".segbtn").forEach((b,j)=>{b.classList.toggle("on",j===i);b.setAttribute("aria-selected",j===i)});
+  segP.innerHTML=`<div><span class="eyebrow"><b>${s.code}</b>${s.name}</span></div>
+   <div class="row"><div><h4>Who buys</h4><p>${s.who}</p></div><div><h4>What they run</h4><p>${s.stack}</p></div><div><h4>Why now</h4><p>${s.why}</p></div></div>
+   <div class="landexp"><b>Land</b><span>${s.land}</span><b>Expand</b><span>${s.exp}</span></div>
+   <div><h4 style="margin-bottom:8px">Example accounts</h4><div class="chips">${s.acc.map(a=>`<span class="chip">${a}</span>`).join("")}</div></div>`;
+}
+segsEl.addEventListener("click",e=>{const b=e.target.closest(".segbtn");if(b)showSeg(+b.dataset.i)});
+showSeg(0);
+
+/* ---------- Plays ---------- */
+const v=x=>`<code>{{${x}}}</code>`;
+const PLAYS=[
+ {tab:"Oldest code, most revenue",thesis:"The systems that earn the most are the ones fewest people can change.",
+  who:"Airlines, travel technology and cruise lines with TPF or COBOL cores.",
+  data:[v("core_system")+", from engineering job posts and architecture talks",v("tpf_role")+", open mainframe or TPF reqs, a sign of retiring skills",v("program")+", any modernization program named in earnings calls or the 10-K"],
+  personas:"CIO first, then the VP of Commercial Technology and the head of mainframe engineering.",
+  disc:["How many people can safely change the fare or PNR code today?","What did your last modernization estimate assume about discovery?","What gets frozen during peak, and for how long?"],
+  to:"CIO",subj:["{{company}} and "+"{{core_system}}","Eight months to eight days","Modernization opp"],
+  emails:[
+   ["Day 1",`${v("first_name")}, saw ${v("company")} is hiring for ${v("tpf_role")} again. Most carriers I speak with have fewer people each year who can safely change reservation code.`,`Mercedes-Benz used Devin to analyze over 200,000 lines of COBOL and cut an eight-month modernization estimate to eight days.`,`Worth 20 minutes to see what that looks like on one ${v("core_system")} module?`],
+   ["Day 3, bump",`${v("first_name")}, a low-risk way to test it: point DeepWiki at one module and get documentation your team can query in plain English. No code changes.`,`Think it's worth a look?`],
+   ["Day 8, breakup",`${v("first_name")}, last note from me. If modernization is parked until after peak, happy to send the Mercedes-Benz and automaker write-ups for your planning cycle.`,`No worries if not.`]],
+  proof:"Mercedes-Benz"+fn(9)+", automaker COBOL to AWS Lambda at 73% lower cost"+fn(10),value:"Discovery in days, lower migration risk"},
+ {tab:"Security debt burn-down",thesis:"Scanner findings pile up faster than engineers can fix them.",
+  who:"Hotel groups, gaming companies and online travel holding payment, passport and loyalty data.",
+  data:[v("scanner")+", Snyk, Veracode, Fortify or SonarQube from job posts",v("driver")+", PCI DSS, a regulator order or a disclosed incident",v("ciso")+", the security leader quoted in recent press"],
+  personas:"CISO and VP of Application Security first, then the CIO.",
+  disc:["How large is the scanner backlog, and how old is the median finding?","Who fixes findings today: security or the app teams?","What does the board or the PCI assessor see each quarter?"],
+  to:"CISO",subj:["{{company}} scanner backlog","Six-week burn-down","AppSec opp"],
+  emails:[
+   ["Day 1",`${v("first_name")}, most hospitality AppSec teams I talk to have more ${v("scanner")} findings than engineers to fix them.`,`Devin resolved about 70% of Itaú's SonarQube, Fortify and Veracode backlog automatically, with each fix shipped as a reviewed PR.`,`Open to 20 minutes on what a six-week burn-down could look like at ${v("company")}?`],
+   ["Day 3, bump",`${v("first_name")}, Cognition runs this as a program: forward-deployed engineers embed with your team, connect ${v("scanner")}, and forecast Devin capacity by week six.`,`Worth comparing against your current remediation plan?`],
+   ["Day 8, breakup",`${v("first_name")}, last note from me. Seems like the backlog may be under control?`,`If not, I can share how the program is scoped so you have it for budget season. No worries either way.`]],
+  proof:"Itaú"+fn(3)+", Vulnerability Program"+fn(7),value:"Lower risk, audit-ready evidence"},
+ {tab:"Peak-season resilience",thesis:"One bad week costs more than a year of engineering tools.",
+  who:"Airline operations technology, hotel and casino ops, online travel on-call teams.",
+  data:[v("incidents")+", public outages or status-page incidents in the last 12 months",v("observability")+", Datadog, Splunk, PagerDuty from tech stack data",v("peak")+", the busiest season or event for the brand"],
+  personas:"SVP of Operations Technology or VP of Engineering first, then the head of SRE.",
+  disc:["Walk me through your last peak-season incident. How long before you knew where to look?","How many engineers are on peak freeze instead of the roadmap?","What does an hour of downtime cost in rebookings and comps?"],
+  to:"SVP Operations Technology",subj:["{{company}} and {{peak}}","Root cause in hand","Oncall opp"],
+  emails:[
+   ["Day 1",`${v("first_name")}, Delta put the CrowdStrike outage at $500M in five days, with its crew-tracking system badly disrupted.`,`Devin Oncall now investigates alerts across ${v("observability")} and your code, and prepares a fix for an engineer to approve.`,`Worth a conversation before ${v("peak")}?`],
+   ["Day 3, bump",`${v("first_name")}, one way to test it: connect Devin to one service's alerts for 30 days and compare its investigations with your on-call notes.`,`Think it's worth a look?`],
+   ["Day 8, breakup",`${v("first_name")}, last note from me. Seems like ${v("peak")} readiness is covered?`,`If the same engineers who should be modernizing are on peak freeze again, happy to show how others are giving them time back. No worries if not.`]],
+  proof:"Devin Oncall"+fn(6)+", TierZero"+fn(5)+", Southwest"+fn(11),value:"Shorter incidents, engineers back on the roadmap"},
+ {tab:"Agent-ready distribution",thesis:"AI agents are starting to book travel, and they shop through APIs.",
+  who:"Hotel brands, airline direct channels, online travel and car rental.",
+  data:[v("api_surface")+", a public developer portal or MCP server",v("direct_mix")+", direct versus third-party booking share from earnings",v("ai_partner")+", any announced AI or agent partnership"],
+  personas:"Chief Digital Officer first, then the VP of Distribution Technology and the VP of Engineering.",
+  disc:["Can an AI agent price and book your inventory today without scraping?","What is sitting on the API backlog?","Who owns the agent channel?"],
+  to:"Chief Digital Officer",subj:["{{company}} and AI agents","Agent-ready APIs","Direct booking opp"],
+  emails:[
+   ["Day 1",`${v("first_name")}, Sabre, PayPal and Mindtrip are building booking inside chat, and Google is working with Marriott, IHG and Choice on agentic booking.`,`Brands without clean APIs risk being invisible to those agents. Devin builds and tests the API and integration backlog in parallel.`,`Worth 20 minutes on what that means for ${v("company")}'s direct share?`],
+   ["Day 3, bump",`${v("first_name")}, a scoped start: Devin documents your rate and availability services, then builds one agent-ready endpoint with tests.`,`Think that's worth a look?`],
+   ["Day 8, breakup",`${v("first_name")}, last note from me. Seems like the agent channel sits with another team?`,`Happy to send a short brief on what the major brands are doing. No worries if not.`]],
+  proof:"Sabre, PayPal and Mindtrip"+fn(17)+", Google agentic booking"+fn(18),value:"Protect direct share as agents arrive"}
+];
+const tabsEl=document.getElementById("playtabs"), ppEl=document.getElementById("playpanel");
+tabsEl.innerHTML=PLAYS.map((p,i)=>`<button class="tab" type="button" role="tab" data-i="${i}">${p.tab}</button>`).join("");
+function showPlay(i){
+  const p=PLAYS[i];
+  tabsEl.querySelectorAll(".tab").forEach((b,j)=>{b.classList.toggle("on",j===i);b.setAttribute("aria-selected",j===i)});
+  ppEl.innerHTML=`<div class="playpanel"><div class="meta">
+     <div><p class="thesis">${p.thesis}</p></div>
+     <div><h4>Who</h4><p>${p.who}</p></div>
+     <div><h4>Data the AE pulls</h4><ul>${p.data.map(d=>`<li>${d}</li>`).join("")}</ul></div>
+     <div><h4>Personas</h4><p>${p.personas}</p></div>
+     <div><h4>Discovery</h4><ul>${p.disc.map(d=>`<li>${d}</li>`).join("")}</ul></div>
+     <div class="proofline"><span><b>Proof</b> ${p.proof}</span><span><b>Value</b> ${p.value}</span></div>
+   </div>
+   <div class="emails">${p.emails.map((e,k)=>`<article class="email"><header><span>To: ${p.to}</span><span>Subject: ${p.subj[k]}</span><span>${e[0]}</span></header><div class="body">${e.slice(1).map(x=>`<p>${x}</p>`).join("")}</div></article>`).join("")}</div></div>`;
+}
+tabsEl.addEventListener("click",e=>{const b=e.target.closest(".tab");if(b)showPlay(+b.dataset.i)});
+showPlay(0);
+
+/* ---------- Battlecards ---------- */
+const BC=[
+ {n:"Lab coding agents",s:"Claude Code, Codex and similar",tag:"Most common",
+  strong:"Strong models, developer love and fast self-serve adoption.",
+  win:"Devin works across the whole lifecycle at enterprise scale: VPC deployment, permissions for 100,000+ developers, COBOL as well as Python, and forward-deployed engineers who drive adoption"+fn(19)+". Devin Desktop runs these agents too, through ACP"+fn(4)+".",
+  ask:"Who in your organization turns individual developer tools into a measured outcome, like a backlog cleared?"},
+ {n:"GitHub Copilot",s:"Bundled in Microsoft contracts",tag:"Often incumbent",
+  strong:"Already purchased, already installed, familiar to developers.",
+  win:"Autonomous work that runs in parallel without a developer at the keyboard, legacy code support, and pricing tied to work completed instead of seats.",
+  ask:"What did Copilot change on your modernization timeline last year?"},
+ {n:"Cursor",s:"AI-native IDE",tag:"Developer favorite",
+  strong:"A loved editor with strong individual productivity.",
+  win:"Devin Desktop matches the IDE, and Devin Cloud adds async agents, Review, Oncall and enterprise deployment the IDE alone does not cover.",
+  ask:"What happens to the work when the developer closes the laptop?"},
+ {n:"Systems integrators",s:"Global SIs and mainframe specialists",tag:"Partner first",
+  strong:"Trusted delivery capacity and existing statements of work.",
+  win:"We partner instead of compete. Cognition already works with SI delivery partners"+fn(20)+", and Devin makes their fixed-price modernization bids cheaper and faster.",
+  ask:"Which line items in your current SOW assume human discovery hours?"},
+ {n:"Status quo",s:"Hire more engineers, wait",tag:"Doing nothing",
+  strong:"No change risk this quarter.",
+  win:"TPF and OPERA skills are scarce, open reqs stay open, and every outage has a precedent price. Cognition guarantees value at least equal to usage"+fn(8)+".",
+  ask:"How many engineering reqs are open today, and how long have they been open?"}
+];
+const bcl=document.getElementById("bclist"), bcp=document.getElementById("bcpanel");
+bcl.innerHTML=BC.map((b,i)=>`<button class="bcbtn" type="button" data-i="${i}"><b>${b.n}</b><span>${b.s}</span></button>`).join("");
+function showBC(i){
+  const b=BC[i];
+  bcl.querySelectorAll(".bcbtn").forEach((x,j)=>{x.classList.toggle("on",j===i);x.setAttribute("aria-pressed",j===i)});
+  bcp.innerHTML=`<div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center"><h3>${b.n}</h3><span class="pill">${b.tag}</span></div>
+   <div class="grid"><div><h4>Where they are strong</h4><p>${b.strong}</p></div><div><h4>Where Devin wins</h4><p>${b.win}</p></div></div>
+   <div class="ask"><h4>The question we ask</h4><p>${b.ask}</p></div>`;
+}
+bcl.addEventListener("click",e=>{const b=e.target.closest(".bcbtn");if(b)showBC(+b.dataset.i)});
+showBC(0);
+
+/* ---------- MEDDPICC ---------- */
+const MED=[
+ ["M","Metrics","The number the deal is sold on","An outage or backlog nobody has priced.",
+  "Outage hours, open findings, modernization timeline, consultant spend, open reqs.","What did your last major incident cost in rebookings and comps?","A baseline from incident history and scanner exports, confirmed by the CIO.","Bring the Mercedes-Benz and Itaú numbers and ask them to correct for their org."],
+ ["E","Economic buyer","Who can say yes alone","Only engineers involved by M2.",
+  "CIO or COO, with the CFO on multiyear commits.","Who answers to the board when the crew or property system goes down?","A meeting with the economic buyer before success criteria are final.","Ask the champion for 20 minutes with the CIO to agree the readout date."],
+ ["D","Decision criteria","How they judge us","Criteria copied from a seat-based tool.",
+  "Legacy language support, security model, deployment, measured outcomes, cost per task.","What has to be true for Devin to be the clear choice?","Written success criteria agreed before work starts.","Reshape criteria around completed work and time to value."],
+ ["D","Decision process","Every step to signature","Nobody can describe what follows the first use case.",
+  "Security review, architecture review, business case, procurement, peak-season windows.","Walk me through how you bought your last engineering platform.","A mutual action plan dated back from signature and around peak.","Map the post-validation steps with the champion on day one."],
+ ["P","Paper process","How the contract gets signed","Procurement hears about it at quarter end.",
+  "MSA, DPA, security questionnaire, AWS Marketplace or direct.","Would buying through AWS Marketplace help with committed spend?","Security package sent at M2 and a signature date agreed.","Bring procurement in as soon as the business case is agreed."],
+ ["I","Identify pain","Why they act this year","Pain with no cost and no deadline.",
+  "Outage exposure, retiring TPF or OPERA skills, scanner backlog, agent readiness.","What happens if nothing changes before next peak?","Pain tied to a dollar figure, a date and an owner.","Tie it to peak season, a support end date or an audit."],
+ ["C","Champion","Sells when we are not in the room","A fan with no pull on the decision.",
+  "An architect or platform lead with influence who gains from the win.","How would you present the results to your CIO?","They ran the first use case and got us a meeting we could not get alone.","Keep them close and multithread to the CIO, CISO and finance."],
+ ["C","Competition","Every option they could pick","We learn about the alternative at proposal.",
+  "Lab agents, Copilot, Cursor, the SI and doing nothing, with each internal sponsor.","If you don't choose us, what do you do instead?","Each alternative named with its sponsor.","Ask the battlecard questions in discovery so criteria reflect where Devin wins."]
+];
+const medEl=document.getElementById("med");
+const front=m=>`<span class="L">${m[0]}</span><span class="nm">${m[1]}</span><span class="sub">${m[2]}</span><span class="red"><b>Red flag</b> ${m[3]}</span><span class="flipcue">Select to flip</span>`;
+const back=m=>`<span class="L">${m[0]}</span><div class="back"><div><i>What we validate</i><span>${m[4]}</span></div><div><i>What we ask</i><span>${m[5]}</span></div><div><i>Proof we collect</i><span>${m[6]}</span></div><div><i>Our move</i><span>${m[7]}</span></div></div>`;
+medEl.innerHTML=MED.map((m,i)=>`<button class="card" type="button" data-i="${i}" aria-pressed="false" aria-label="${m[1]}">${front(m)}</button>`).join("");
+function setCard(el,on){const m=MED[+el.dataset.i];el.classList.toggle("flipped",on);el.setAttribute("aria-pressed",on);el.innerHTML=on?back(m):front(m);el.classList.add("pop");setTimeout(()=>el.classList.remove("pop"),180)}
+medEl.addEventListener("click",e=>{const c=e.target.closest(".card");if(c)setCard(c,!c.classList.contains("flipped"))});
+const fa=document.getElementById("flipall");
+fa.addEventListener("click",()=>{const cards=[...medEl.querySelectorAll(".card")];const anyFront=cards.some(c=>!c.classList.contains("flipped"));cards.forEach(c=>setCard(c,anyFront));fa.textContent=anyFront?"Flip all back":"Flip all"});
+
+/* ---------- Copy + nav highlight ---------- */
+document.querySelectorAll("[data-copy]").forEach(b=>b.addEventListener("click",()=>{
+  const el=document.getElementById(b.dataset.copy), t=el.textContent.trim();
+  const done=()=>{b.textContent="Copied";setTimeout(()=>b.textContent="Copy email",1600)};
+  try{navigator.clipboard.writeText(t).then(done,()=>{selectEl(el)})}catch(e){selectEl(el)}
+}));
+function selectEl(el){const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r)}
+const links=[...document.querySelectorAll("#navlist a")];
+if("IntersectionObserver" in window){
+  const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){links.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+en.target.id))}})},{rootMargin:"-45% 0px -50% 0px"});
+  ["top","cognition","why","talk","territory","plays","competition","deal","team","about","plan"].forEach(id=>{const s=document.getElementById(id);if(s)io.observe(s)});
+}
+})();
+</script>
+
+</body>
+</html>
