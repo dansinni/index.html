@@ -135,7 +135,7 @@ section{padding-block:84px;border-bottom:1px solid var(--line)}
 .board-note{font:400 .7rem/1.5 var(--f-mono);color:var(--muted);padding:11px 18px;grid-column:1/-1;border-top:1px solid var(--line)}
 
 /* stat strip */
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--ink);margin-top:36px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--ink);margin-top:48px}
 @media (max-width:820px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .stat{padding:18px 18px 4px 0;display:grid;gap:8px;align-content:start}
 .stat .who{font:400 .7rem/1 var(--f-mono);letter-spacing:.04em;color:var(--muted)}
@@ -149,6 +149,7 @@ section{padding-block:84px;border-bottom:1px solid var(--line)}
 .col{display:grid;gap:10px;align-content:start;min-width:0}
 .col p{color:var(--muted);font-family:var(--f-serif);font-size:1rem}
 .col h3{border-top:1px solid var(--ink);padding-top:14px}
+.col .lead-in{font-family:var(--f-head);font-weight:500;color:var(--ink);letter-spacing:-.01em}
 
 .products{margin-top:48px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
 @media (max-width:860px){.products{grid-template-columns:1fr}}
@@ -200,6 +201,22 @@ section{padding-block:84px;border-bottom:1px solid var(--line)}
 @media (max-width:860px){.trio{grid-template-columns:1fr}}
 .trio div{display:grid;gap:8px;border-top:1px solid var(--ink);padding-top:12px}
 .trio p{color:var(--muted);font:400 .97rem/1.55 var(--f-serif)}
+
+/* measure */
+.measure{margin-top:40px;border:1px solid var(--line-strong);border-radius:14px;background:var(--surface);padding:26px;display:grid;gap:22px}
+.measure .mhead{display:grid;gap:8px}
+.measure .mhead h3{font-size:clamp(1.35rem,2.4vw,1.75rem);font-weight:400;letter-spacing:-.03em}
+.measure .mhead p{color:var(--muted);font:400 1rem/1.55 var(--f-serif);max-width:68ch}
+.mgrid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr) minmax(0,1fr);gap:14px}
+@media (max-width:900px){.mgrid{grid-template-columns:1fr}}
+.mcol{border-radius:10px;padding:16px;display:grid;gap:10px;align-content:start;background:var(--paper);border:1px solid var(--line);min-width:0}
+.mcol ul{margin:0;padding-left:1.1em;display:grid;gap:7px;font:400 .95rem/1.5 var(--f-serif)}
+.mcol p{font:400 .95rem/1.5 var(--f-serif)}
+.mcol b{font-family:var(--f-head);font-weight:500}
+.mcol.bad h4{color:var(--crit)}
+.mcol.bad li{color:var(--muted);text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--crit) 55%,transparent)}
+.mcol.good{background:var(--accent-soft);border-color:var(--accent)}
+.mcol.good h4{color:var(--accent)}
 
 /* territory */
 .segs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
@@ -420,7 +437,6 @@ td.wrap1{white-space:normal}
       <li><a href="#competition">Competition</a></li>
       <li><a href="#deal">Deal</a></li>
       <li><a href="#team">Team</a></li>
-      <li><a href="#about">About</a></li>
       <li><a href="#plan">90 days</a></li>
     </ul>
     <a class="btn" href="#next">Next step</a>
@@ -435,17 +451,6 @@ td.wrap1{white-space:normal}
     <h1>Engineering capacity for the industry where software is the operation</h1>
     <p class="lede">In travel and hospitality the flight does not leave if the crew system cannot pair a pilot, and the guest does not check in if the property system is down. Here is how I would build and lead the team that makes Devin the engineering capacity behind those systems.</p>
     <div class="ctas"><a class="btn" href="#plan">See the 90-day plan</a><a class="btn ghost" href="#next">Contact me</a></div>
-
-    <div class="boardwrap" aria-label="Illustrative Devin session board">
-      <div class="chrome"><span class="dots"><i></i><i></i><i></i></span><span>Devin &middot; Sessions &middot; Composite airline and hotel group</span><em>Illustrative</em></div>
-      <div class="board">
-        <div class="board-top"><h3>Today's sessions</h3><small>Select a session to see the work</small></div>
-        <div class="brow head" role="presentation"><span>Time</span><span>Task</span><span>Agent</span><span>Status</span></div>
-        <div id="boardrows"></div>
-      </div>
-      <div class="detail" id="boarddetail" aria-live="polite"></div>
-      <div class="board-note">Each session maps to a Devin product and to one of the three pressures in section 03.</div>
-    </div>
 
     <div class="stats">
       <div class="stat"><span class="who">Southwest, Dec 2022</span><span class="big num">$800M</span><p>Pre-tax hit after its crew scheduling system was overwhelmed<sup class="fn"><a href="#s11">11</a></sup></p></div>
@@ -462,7 +467,7 @@ td.wrap1{white-space:normal}
     <div class="sec-head"><span class="eyebrow"><b>01</b>What I know about Cognition</span><h2>An agent lab built for the enterprise</h2><p class="lede">The company, the product family, and why large travel and hospitality companies buy it.</p></div>
     <div class="cols3">
       <div class="col"><h3>The company</h3><p>Cognition describes itself as an applied AI lab building end-to-end software agents. It raised over $2B at a $48B valuation in September 2026<sup class="fn"><a href="#s1">1</a></sup>, with run-rate revenue up from $492M in May to almost $900M<sup class="fn"><a href="#s2">2</a></sup>. Devin writes most of Cognition's own code<sup class="fn"><a href="#s3">3</a></sup>.</p></div>
-      <div class="col"><h3>The difference</h3><p>Cognition invests as much in forward-deployed engineering and AI enablement as in core R&amp;D, accelerates the whole software lifecycle, and absorbs deployment complexity: VPC deployment, permissions for 100,000+ developers, COBOL as well as Python. It is also model-independent, which large buyers value for supplier continuity<sup class="fn"><a href="#s19">19</a></sup>.</p></div>
+      <div class="col"><h3>The difference</h3><p><b class="lead-in">Devin is not a coding tool. It is engineering capacity as a service, at scale.</b> An agent workforce that compresses the time and cost of the entire software lifecycle, delivered with the change-management muscle large enterprises need to scale it. Much of that muscle is the embedded work of forward-deployed engineers, funded on par with core R&amp;D<sup class="fn"><a href="#s19">19</a></sup>.</p><p>Devin plans the work, writes the code, runs the build and tests, and opens a pull request with the evidence the team needs to review and merge it. Developers shift from code writers to architects and systems thinkers.</p></div>
       <div class="col"><h3>The motion</h3><p>Usage-based pricing on Agent Compute Units aligns cost with work done, so accounts grow as teams roll Devin out. Cognition guarantees Devin delivers at least as much engineering value as a customer consumes<sup class="fn"><a href="#s8">8</a></sup>. Customers include Citi, NVIDIA and GE Aerospace<sup class="fn"><a href="#s2">2</a></sup>.</p></div>
     </div>
 
@@ -532,7 +537,7 @@ td.wrap1{white-space:normal}
           <div><b>Cloud-first from day one</b><span>Every Devin session has run in its own microVM since launch, the basis for horizontal scale and event-driven automation<sup class="fn"><a href="#s19">19</a></sup>.</span></div>
           <div><b>Local and cloud in one workflow</b><span>Plan in Devin Desktop or the CLI, then hand the work to Devin Cloud in one click<sup class="fn"><a href="#s22">22</a></sup>.</span></div>
           <div><b>Directed to proactive</b><span>Oncall, Security Swarm and Automations start work from events, and Devins can now manage and schedule other Devins<sup class="fn"><a href="#s24">24</a></sup><sup class="fn"><a href="#s28">28</a></sup>.</span></div>
-          <div><b>Priced as capacity, not seats</b><span>Agent Compute Units mean customers pay for engineering output, which is what a cloud agent delivers.</span></div>
+          <div><b>Priced as capacity, scored on output</b><span>Usage pricing tracks work done, but the scorecard is engineering output: productive hours and dates hit, never tokens consumed.</span></div>
           <div><b>Independent agent lab</b><span>Cognition chooses and combines the best models for each task, including its own, so customers are not tied to one provider<sup class="fn"><a href="#s24">24</a></sup>.</span></div>
           <div><b>Proof at home</b><span>Cognition merged 659 Devin pull requests into its own codebase in a single week<sup class="fn"><a href="#s23">23</a></sup>.</span></div>
         </div>
@@ -585,6 +590,14 @@ td.wrap1{white-space:normal}
       <div><h4>Teach</h4><p>The first meeting changes how they think about engineering capacity. The demo comes after they agree headcount and SI contracts will not close the gap.</p></div>
       <div><h4>Tailor</h4><p>Outage risk for the COO, modernization timelines for the CIO, the backlog and audit trail for the CISO, and cost per completed task for finance.</p></div>
       <div><h4>Take control</h4><p>Price the next outage, push back on "we will wait for the SI," and leave every meeting with a dated next step and a named use case.</p></div>
+    </div>
+    <div class="measure">
+      <div class="mhead"><h4>How we prove value</h4><h3>Measure real output, not token usage</h3><p>Tokens spent, ACUs consumed and raw pull request counts are easy to game and prove nothing to a CFO. Every pilot is scored on outcomes the customer already cares about.</p></div>
+      <div class="mgrid">
+        <div class="mcol bad"><h4>What we do not sell on</h4><ul><li>Tokens or ACUs consumed</li><li>Raw pull request counts</li><li>A savings percentage promised before discovery</li></ul></div>
+        <div class="mcol good"><h4>What we measure</h4><ul><li><b>Productive engineering hours</b> delivered, in human-equivalent terms<sup class="fn"><a href="#s29">29</a></sup></li><li><b>Time to deliver</b> against a deadline the customer has already named</li><li><b>Business outcome</b>, led by revenue: a faster guest-app release, an agent-ready booking API, a modernization date that holds</li></ul></div>
+        <div class="mcol"><h4>How it expands</h4><p>A paid pilot proves one outcome on one dated priority. That result becomes the proof point the champion takes to the next business unit, and Cognition backs it with a guarantee that Devin delivers more engineering value than it costs<sup class="fn"><a href="#s8">8</a></sup>.</p></div>
+      </div>
     </div>
   </div>
 </section>
@@ -656,39 +669,10 @@ td.wrap1{white-space:normal}
   </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="wrap">
-    <div class="sec-head"><span class="eyebrow"><b>10</b>About</span><h2>Why I'm a fit for this role</h2><p class="lede">Twenty years selling complex technology to enterprise engineering and security buyers, building vertical teams, and selling modernization with AI before it had a category name.</p></div>
-    <div class="aboutstats">
-      <div><strong>$9M+</strong><span>ARR in a single account landed at Honeycomb</span></div>
-      <div><strong>$60M</strong><span>Qualified pipeline from an AI-assisted modernization practice I co-built</span></div>
-      <div><strong>2x</strong><span>Quota as an IC at Pivotal, and 150%+ as a manager</span></div>
-      <div><strong>6 + 3</strong><span>AEs and SDRs on the first FSI vertical team I built</span></div>
-    </div>
-    <div class="tablewrap" style="margin-top:0"><table>
-      <thead><tr><th>What the role asks for</th><th>Where I have done it</th></tr></thead>
-      <tbody>
-        <tr><td>Build and lead a vertical team</td><td class="wrap1">Built Honeycomb's first Financial Services and Insurance team from zero: six AEs and three SDRs, with a direct quota.</td></tr>
-        <tr><td>$1M+ deals with CIO and CTO buyers</td><td class="wrap1">Landed a single account above $9M ARR at Honeycomb, sold through architecture, security and procurement.</td></tr>
-        <tr><td>Sell modernization with AI</td><td class="wrap1">Co-built an AI-assisted modernization practice at Publicis Sapient: $7M in year one and $60M in qualified pipeline.</td></tr>
-        <tr><td>Exceed targets</td><td class="wrap1">2x quota as an IC and 150%+ as a manager at Pivotal.</td></tr>
-        <tr><td>Win the security review</td><td class="wrap1">CISSP and CIPP certified. FSI has the heaviest security review in enterprise software, and that is where I have sold.</td></tr>
-        <tr><td>Understand AI from the builder's side</td><td class="wrap1">Co-founded N-Tier Discovery, an AI/ML startup acquired in 2012.</td></tr>
-        <tr><td>Sell across industries</td><td class="wrap1">Deloitte, Dell EMC, Pivotal and VMware Tanzu, Atos and Eviden, Publicis Sapient and Honeycomb.</td></tr>
-      </tbody>
-    </table></div>
-    <div class="why">
-      <div><h3>Why travel and hospitality from FSI</h3><p>FSI is the hardest buyer in enterprise software: the heaviest security review, the most legacy debt and the longest cycles. Travel and hospitality shares all three, with TPF instead of COBOL cores and PCI and FTC orders instead of bank regulators. What transfers is the motion: selling to engineering leaders, multithreading large organizations, getting through risk review and turning modernization into a business case.</p></div>
-      <div><h3>Why Cognition</h3><p>Most AI coding tools sell seats to developers. Cognition sells finished engineering work to the enterprise and backs it with forward-deployed engineers, which is the motion I have run for a decade in cloud-native and AI-assisted modernization. Devin's usage grows with outcomes, so a good land in this industry becomes a large account, and this industry has more legacy code and peak-season risk than almost any other.</p></div>
-    </div>
-  </div>
-</section>
-
 <!-- 90 DAYS -->
 <section id="plan">
   <div class="wrap">
-    <div class="sec-head"><span class="eyebrow"><b>11</b>The first 90 days</span><h2>Front-loaded, with something to inspect at every gate</h2><p class="lede">Deals in flight first, the team second, new logos from week one, and a forecast leadership can trust by day 90.</p></div>
+    <div class="sec-head"><span class="eyebrow"><b>10</b>The first 90 days</span><h2>Front-loaded, with something to inspect at every gate</h2><p class="lede">Deals in flight first, the team second, new logos from week one, and a forecast leadership can trust by day 90.</p></div>
     <div class="phases">
       <div class="phase"><span class="days">Days 1 to 30</span><h3>Inherit, assess, activate</h3><ul>
         <li>Review every inherited opportunity with its AE in week one; confirm stage, champion, next step and close plan</li>
@@ -724,7 +708,7 @@ td.wrap1{white-space:normal}
 <!-- NEXT -->
 <section id="next">
   <div class="wrap next">
-    <div class="sec-head" style="margin:0"><span class="eyebrow"><b>12</b>Next step</span><h2>Start in early November. Be selling at full speed when Q1 opens.</h2><p class="lede">Many airlines, hotels and casinos lock down their systems from mid-November through New Year's to protect holiday peak. Few buyers start new initiatives during a freeze, which makes those weeks the right time to ramp. If I start in early November, the team walks into Q1 2027 with a plan, a full bench and pipeline already in motion.</p><p class="lede">I'd welcome 30 minutes to walk the team through this plan for feedback. Every segment, play and number here is a starting hypothesis, and the fastest way to improve it is with the people who sell Devin every day.</p></div>
+    <div class="sec-head" style="margin:0"><span class="eyebrow"><b>11</b>Next step</span><h2>Start in early November. Be selling at full speed when Q1 opens.</h2><p class="lede">Many airlines, hotels and casinos lock down their systems from mid-November through New Year's to protect holiday peak. Few buyers start new initiatives during a freeze, which makes those weeks the right time to ramp. If I start in early November, the team walks into Q1 2027 with a plan, a full bench and pipeline already in motion.</p><p class="lede">I'd welcome 30 minutes to walk the team through this plan for feedback. Every segment, play and number here is a starting hypothesis, and the fastest way to improve it is with the people who sell Devin every day.</p></div>
     <div class="contact">
       <div class="line"><span id="email">dan.sinni@gmail.com</span><button class="copy" type="button" data-copy="email">Copy email</button></div>
       <div class="line"><span id="phone">917-805-8939</span><button class="copy" type="button" data-copy="phone">Copy number</button></div>
@@ -765,6 +749,7 @@ td.wrap1{white-space:normal}
       <li id="s26"><a href="https://stripe.dev/blog/minions-stripes-one-shot-end-to-end-coding-agents" target="_blank" rel="noopener">Stripe, Minions: one-shot, end-to-end coding agents</a></li>
       <li id="s27"><a href="https://cognition.com/blog/devin-fedramp-high-in-process" target="_blank" rel="noopener">Cognition, Devin is now FedRAMP High In-Process</a></li>
       <li id="s28"><a href="https://cognition.com/blog/devin-can-now-manage-devins" target="_blank" rel="noopener">Cognition, Devin can now manage Devins</a></li>
+      <li id="s29"><a href="https://cognition.com/blog/ai-productivity" target="_blank" rel="noopener">Cognition, Estimating the productivity of an autonomous AI software engineer</a></li>
     </ol>
     <p class="disclaimer">Independent research prepared by Dan Sinni for the Regional Sales Manager, Travel and Hospitality role. Not affiliated with or endorsed by Cognition. Figures come from public and third-party sources as of October 2026. The session board, example accounts and emails are illustrative. The Cognition logo is used only to identify the company this plan is prepared for.</p>
   </div>
@@ -775,49 +760,6 @@ td.wrap1{white-space:normal}
 (function(){
 const fn = n => `<sup class="fn"><a href="#s${n}">${n}</a></sup>`;
 const fns = arr => arr.map(fn).join("");
-
-/* ---------- Departures board ---------- */
-const BOARD = [
- {t:"06:12",task:"Document PNR and fare modules",agent:"DeepWiki",sys:"Reservations on TPF",st:"COMPLETE",c:"done",
-  trig:"An architect needs a map of the fare-quote path before anyone will sign a modernization estimate.",
-  steps:["Indexes decades of Assembler and TPF-C across repositories","Writes queryable docs: data flows, business rules and owners","Flags dead code and undocumented interline logic"],
-  human:"The reservations architect reviews and corrects the map.",
-  out:"Discovery takes days instead of a quarter of consultant hours.",press:"The oldest code runs the most revenue",src:[9,15]},
- {t:"06:18",task:"Burn down Fortify backlog",agent:"Devin",sys:"Loyalty platform",st:"IN PROGRESS",c:"prog",
-  trig:"A scanner export lands with over a thousand open findings, many older than six months.",
-  steps:["Ingests the scanner report and groups findings by pattern","Opens one PR per fix with tests and a validation note","Runs many sessions in parallel, each in its own VM"],
-  human:"The AppSec lead approves PRs in batches.",
-  out:"The backlog trends toward zero, with evidence ready for PCI and the board.",press:"The risk surface grows faster than teams",src:[7,3]},
- {t:"06:24",task:"Rebuild OXI interfaces on OHIP",agent:"Devin",sys:"Property mgmt",st:"IN REVIEW",c:"rev",
-  trig:"OPERA 5.6 Premier Support ends in December 2027 and point-to-point OXI interfaces must move to OHIP.",
-  steps:["Maps each OXI interface and the events it depends on","Writes the OHIP version with contract tests","Devin Review groups the diff so reviewers see intent first"],
-  human:"The integration lead reviews and schedules cutover outside peak.",
-  out:"The migration is paced by review capacity instead of typing.",press:"The oldest code runs the most revenue",src:[16]},
- {t:"06:31",task:"Triage crew-pairing latency alert",agent:"Devin Oncall",sys:"Ops control",st:"INVESTIGATING",c:"inv",
-  trig:"An alert fires during a weather event: crew-pairing API latency is over its objective.",
-  steps:["Pulls logs, traces and recent deploys","Traces the slowdown to one configuration change","Prepares a rollback PR for the on-call engineer"],
-  human:"The on-call engineer approves the fix.",
-  out:"The incident bridge starts with a root-cause candidate in hand.",press:"Downtime is a P&L event",src:[6,5,12]},
- {t:"06:40",task:"Ship agent-ready rate API",agent:"Devin",sys:"Distribution",st:"QUEUED",c:"q",
-  trig:"The digital team needs AI shopping agents to price and book direct inventory.",
-  steps:["Documents current rate and availability services","Builds a versioned endpoint with tests and rate limits","Drafts the developer docs agents will read"],
-  human:"The product owner sets scope and guardrails.",
-  out:"Direct inventory is visible to the agents now booking travel.",press:"The risk surface grows faster than teams",src:[17,18]}
-];
-const rowsEl=document.getElementById("boardrows"), detEl=document.getElementById("boarddetail");
-rowsEl.innerHTML = BOARD.map((r,i)=>`<button class="brow" type="button" data-i="${i}" aria-pressed="false"><span class="t num">${r.t}</span><span class="task">${r.task}</span><span class="ag">${r.agent}</span><span class="st ${r.c}">${r.st}</span></button>`).join("");
-function showBoard(i){
-  const r=BOARD[i];
-  rowsEl.querySelectorAll(".brow").forEach((b,j)=>{b.classList.toggle("sel",j===i);b.setAttribute("aria-pressed",j===i)});
-  detEl.innerHTML=`<div><div class="k">${r.agent} &middot; ${r.sys}</div><h4>${r.task}</h4></div>
-   <div><div class="k">Trigger</div><p>${r.trig}</p></div>
-   <div><div class="k">What Devin does</div><ol>${r.steps.map(s=>`<li>${s}</li>`).join("")}</ol></div>
-   <div><div class="k">Human role</div><p>${r.human}</p></div>
-   <div><div class="k">Outcome</div><p>${r.out}${fns(r.src)}</p></div>
-   <span class="press">Pressure: ${r.press}</span>`;
-}
-rowsEl.addEventListener("click",e=>{const b=e.target.closest(".brow");if(b)showBoard(+b.dataset.i)});
-showBoard(0);
 
 /* ---------- Talk track ---------- */
 const STEPS=[
@@ -836,9 +778,9 @@ const STEPS=[
  {k:"A new way",d:"Describe the better model",say:"Picture a team that understands every line of the legacy code, fixes vulnerabilities while you sleep, and starts every incident with a root cause in hand.",
   a:["What better looks like",[["Understand","DeepWiki maps the legacy estate"],["Execute","Devin works the backlog in parallel sessions"]]],
   b:["And keeps it safe",[["Review","Devin Review keeps quality high as volume grows"],["Respond","Devin Oncall investigates alerts"+fn(6)]]]},
- {k:"Our solution",d:"Show why Cognition",say:"This is already working at companies with code as old and as critical as yours.",
+ {k:"Our solution",d:"Show why Cognition",say:"This is already working at companies with code as old and as critical as yours. We will prove it against a deadline you already care about, measured in engineering output, not tokens spent.",
   a:["The proof",[["8 months to 8 days","Mercedes-Benz COBOL modernization estimate"+fn(9)],["70%","Itaú vulnerability backlog resolved automatically"+fn(3)]]],
-  b:["How we deliver",[["73% lower cost","Automaker COBOL workflow moved to AWS Lambda"+fn(10)],["Forward-deployed engineers","Embedded with your team, single-tenant on AWS"+fn(10)]]]}
+  b:["How we deliver",[["73% lower cost","Automaker COBOL workflow moved to AWS Lambda"+fn(10)],["Forward-deployed engineers","Embedded with your team, single-tenant on AWS"+fn(10)],["The scorecard","Productive engineering hours and dates hit, agreed before the pilot starts"]]]}
 ];
 const stepsEl=document.getElementById("steps"), spEl=document.getElementById("steppanel");
 stepsEl.innerHTML=STEPS.map((s,i)=>`<button class="stepbtn" type="button" role="tab" data-i="${i}"><i>STEP ${i+1}</i><b>${s.k}</b></button>`).join("");
@@ -1010,7 +952,7 @@ showBC(0);
 /* ---------- MEDDPICC ---------- */
 const MED=[
  ["M","Metrics","The number the deal is sold on","An outage or backlog nobody has priced.",
-  "Outage hours, open findings, modernization timeline, consultant spend, open reqs.","What did your last major incident cost in rebookings and comps?","A baseline from incident history and scanner exports, confirmed by the CIO.","Bring the Mercedes-Benz and Itaú numbers and ask them to correct for their org."],
+  "Productive engineering hours, dates against their deadline, outage hours, open findings. Never tokens or ACUs consumed.","What did your last major incident cost in rebookings and comps?","A baseline from incident history and scanner exports, confirmed by the CIO.","Bring the Mercedes-Benz and Itaú numbers and ask them to correct for their org."],
  ["E","Economic buyer","Who can say yes alone","Only engineers involved by M2.",
   "CIO or COO, with the CFO on multiyear commits.","Who answers to the board when the crew or property system goes down?","A meeting with the economic buyer before success criteria are final.","Ask the champion for 20 minutes with the CIO to agree the readout date."],
  ["D","Decision criteria","How they judge us","Criteria copied from a seat-based tool.",
@@ -1045,7 +987,7 @@ function selectEl(el){const r=document.createRange();r.selectNodeContents(el);co
 const links=[...document.querySelectorAll("#navlist a")];
 if("IntersectionObserver" in window){
   const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){links.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+en.target.id))}})},{rootMargin:"-45% 0px -50% 0px"});
-  ["top","cognition","why","talk","territory","plays","competition","deal","team","about","plan"].forEach(id=>{const s=document.getElementById(id);if(s)io.observe(s)});
+  ["top","cognition","cloud","why","talk","territory","plays","competition","deal","team","plan"].forEach(id=>{const s=document.getElementById(id);if(s)io.observe(s)});
 }
 })();
 </script>
