@@ -231,6 +231,22 @@ section{padding-block:84px;border-bottom:1px solid var(--line)}
 .mcol.good{background:var(--accent-soft);border-color:var(--accent)}
 .mcol.good h4{color:var(--accent)}
 
+/* heard */
+.heardgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:900px){.heardgrid{grid-template-columns:1fr}}
+.heard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:grid;gap:14px;align-content:start;min-width:0}
+.hwho{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:12px}
+.hwho b{font:500 1.35rem/1 var(--f-head);letter-spacing:-.03em}
+.hwho span{font:400 .7rem/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.heard ul{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.heard li{display:grid;gap:6px}
+.heard li p{font:400 .97rem/1.5 var(--f-serif)}
+.heard li a{font:400 .74rem/1.3 var(--f-mono);text-decoration:none;justify-self:start;padding:6px 10px;border-radius:999px;background:var(--accent-soft)}
+.phases.two{grid-template-columns:repeat(2,minmax(0,1fr));margin:28px 0 0}
+@media (max-width:900px){.phases.two{grid-template-columns:1fr}}
+.intro2{margin-bottom:40px}
+.subhead[id]{scroll-margin-top:72px}
+
 /* territory */
 .segs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
 .segbtn{display:flex;gap:10px;align-items:center;padding:10px 15px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);cursor:pointer;color:var(--ink);font:400 .92rem/1 var(--f-head)}
@@ -442,16 +458,15 @@ td.wrap1{white-space:normal}
     <a class="brand" href="#top">Dan Sinni<span>/ for</span><svg class="logo logo-nav" viewBox="0 0 160 38" role="img" aria-label="Cognition"><use href="#cog"/></svg></a>
     <ul id="navlist">
       <li><a href="#top">Overview</a></li>
-      <li><a href="#cognition">Cognition</a></li>
-      <li><a href="#cloud">Cloud agents</a></li>
-      <li><a href="#why">Why T&amp;H</a></li>
-      <li><a href="#talk">Talk track</a></li>
-      <li><a href="#territory">Territory</a></li>
-      <li><a href="#plays">Plays</a></li>
+      <li><a href="#heard">What I heard</a></li>
+      <li><a href="#plan">90 days</a></li>
+      <li><a href="#cloud">Why Cognition</a></li>
       <li><a href="#competition">Competition</a></li>
+      <li><a href="#why">Why T&amp;H</a></li>
+      <li><a href="#sell">How we sell</a></li>
       <li><a href="#deal">Deal</a></li>
       <li><a href="#team">Team</a></li>
-      <li><a href="#plan">90 days</a></li>
+      <li><a href="#record">Track record</a></li>
     </ul>
     <a class="btn" href="#next">Next step</a>
   </div>
@@ -461,10 +476,10 @@ td.wrap1{white-space:normal}
 <!-- HERO -->
 <section class="hero" id="top">
   <div class="wrap">
-    <div class="prepared"><div class="forco"><span>Prepared for</span><svg class="logo logo-hero" viewBox="0 0 160 38" role="img" aria-label="Cognition"><use href="#cog"/></svg></div><span class="tag">Regional Sales Manager &middot; Travel &amp; Hospitality</span><span><strong>Ben Jaderstrom</strong> and the leadership team &middot; Independent pre-read by Dan Sinni</span></div>
+    <div class="prepared"><div class="forco"><span>Prepared for</span><svg class="logo logo-hero" viewBox="0 0 160 38" role="img" aria-label="Cognition"><use href="#cog"/></svg></div><span class="tag">Regional Sales Manager &middot; Travel &amp; Hospitality</span><span><strong>Ben Jaderstrom</strong> &middot; Follow-up to our 30/60/90 conversation &middot; Dan Sinni</span></div>
     <h1>Engineering capacity for the industry where software is the operation</h1>
-    <p class="lede">In travel and hospitality the flight does not leave if the crew system cannot pair a pilot, and the guest does not check in if the property system is down. Here is how I would build and lead the team that makes Devin the engineering capacity behind those systems.</p>
-    <div class="ctas"><a class="btn" href="#plan">See the 90-day plan</a><a class="btn ghost" href="#next">Contact me</a></div>
+    <p class="lede">In travel and hospitality the flight does not leave if the crew system cannot pair a pilot, and the guest does not check in if the property system is down. Here is how I would hunt net-new logos, build and coach the team, and make Devin the engineering capacity behind those systems.</p>
+    <div class="ctas"><a class="btn" href="#plan">See the 90-day plan</a><a class="btn ghost" href="#heard">What I heard</a></div>
 
     <div class="stats">
       <div class="stat"><span class="who">Southwest, Dec 2022</span><span class="big num">$800M</span><p>Pre-tax hit after its crew scheduling system was overwhelmed</p></div>
@@ -475,32 +490,59 @@ td.wrap1{white-space:normal}
   </div>
 </section>
 
-<!-- COGNITION -->
-<section id="cognition">
+<!-- HEARD -->
+<section id="heard">
   <div class="wrap">
-    <div class="sec-head"><span class="eyebrow"><b>01</b>What I know about Cognition</span><h2>An agent lab built for the enterprise</h2><p class="lede">The company, the product family, and why large travel and hospitality companies buy it.</p></div>
-    <div class="cols3">
-      <div class="col"><h3>The company</h3><p>Cognition describes itself as an applied AI lab building end-to-end software agents. It raised over $2B at a $48B valuation in September 2026, with run-rate revenue up from $492M in May to almost $900M. Devin writes most of Cognition's own code.</p></div>
-      <div class="col"><h3>The difference</h3><p><b class="lead-in">Devin is not a coding tool. It is engineering capacity as a service, at scale.</b> An agent workforce that compresses the time and cost of the entire software lifecycle, delivered with the change-management muscle large enterprises need to scale it.</p><p>Devin plans the work, writes the code, runs the build and tests, and opens a pull request with the evidence the team needs to review and merge it. Developers shift from code writers to architects and systems thinkers.</p></div>
-      <div class="col"><h3>The motion</h3><p>Usage-based pricing on Agent Compute Units aligns cost with work done, so accounts grow as teams roll Devin out. Cognition guarantees Devin delivers at least as much engineering value as a customer consumes. Customers include Citi, NVIDIA and GE Aerospace.</p></div>
-    </div>
+    <div class="sec-head"><span class="eyebrow"><b>01</b>What I heard</span><h2>What I heard from the team, and what it changed</h2><p class="lede">Ben, Alex and Jia each pushed this plan in a specific direction. Every point below now has a home on this page.</p></div>
+    <div class="heardgrid"><div class="heard"><div class="hwho"><b>Ben</b><span>VP of Majors</span></div><ul><li><p>A 30/60/90 that adds MEDDPICC and Command of the Message rigor, reduces single-threading, and ends in a reliable two-quarter forecast with headcount and SE needs.</p><a href="#plan">The first 90 days &rarr;</a></li><li><p>A clear "why Devin, why now," and the technical difference from Cursor and GitHub Copilot.</p><a href="#cloud">Why cloud agents and Competition &rarr;</a></li><li><p>Start with the strongest existing reps, give them peer-leadership roles, then hire through my network.</p><a href="#team">Running the team &rarr;</a></li></ul></div><div class="heard"><div class="hwho"><b>Alex</b><span>Travel and Hospitality</span></div><ul><li><p>This is a pure hunting role. Show how I generate pipeline and break into greenfield accounts.</p><a href="#plan">Hunting-first 90-day plan &rarr;</a></li><li><p>Enterprise deals need top-down buy-in, and access to GitHub, Jira, Artifactory and Figma can stall a deployment.</p><a href="#deal">Deal and measurement &rarr;</a></li><li><p>Customers most often ask how Devin is different from Claude Code.</p><a href="#competition">Claude Code battlecard &rarr;</a></li></ul></div><div class="heard"><div class="hwho"><b>Jia</b><span>Forward-deployed engineering</span></div><ul><li><p>Explain why cloud agents matter at a foundational level, and know the competitive landscape.</p><a href="#cloud">Six first principles &rarr;</a></li><li><p>Measure real output, not token usage, and tailor the message to the room.</p><a href="#deal">How we prove value &rarr;</a></li><li><p>My deepest vertical is FSI, and this role is travel and hospitality.</p><a href="#record">Customer proof and track record &rarr;</a></li></ul></div></div>
+  </div>
+</section>
 
-    <h3 class="glance">Platform at a Glance</h3>
-    <div class="products">
-      <div class="prod"><span class="pk">Async agent</span><b>Devin</b><p>Cloud agent that plans, writes, tests and opens PRs in parallel sessions, each in its own VM. Runs single-tenant on AWS in the region the customer picks.</p><p class="opens">Opens with VPs of Engineering carrying a backlog</p></div>
-      <div class="prod"><span class="pk">Understand</span><b>DeepWiki</b><p>Indexes codebases into documentation and search engineers can query in plain language.</p><p class="opens">Opens with architects facing a modernization estimate</p></div>
-      <div class="prod"><span class="pk">IDE</span><b>Devin Desktop</b><p>The next generation of Windsurf: a full IDE with an agent command center that also runs Codex and Claude Agent through ACP.</p><p class="opens">Opens with developer experience leads</p></div>
-      <div class="prod"><span class="pk">Quality</span><b>Devin Review</b><p>Organizes large diffs and catches bugs so human review scales with agent output.</p><p class="opens">Opens with platform and quality leaders</p></div>
-      <div class="prod"><span class="pk">Operations</span><b>Devin Oncall</b><p>Launched October 15: investigates alerts and bugs and can prepare a fix for review, building on the TierZero acquisition.</p><p class="opens">Opens with SRE and operations technology</p></div>
-      <div class="prod"><span class="pk">Security</span><b>Vulnerability Program</b><p>FDEs embed, connect existing scanners, burn down the known backlog, then run Security Swarm for what scanners miss.</p><p class="opens">Opens with CISOs and AppSec leads</p></div>
+<!-- 90 DAYS -->
+<section id="plan">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow"><b>02</b>The first 90 days</span><h2>Hunting from week one, with something to inspect at every gate</h2><p class="lede">Net-new pipeline from the first week, the team built around the strongest reps, and by day 90 a reliable two-quarter forecast with the headcount, SE and FDE plan to hit it.</p></div>
+    <div class="phases">
+      <div class="phase"><span class="days">Days 1 to 30</span><h3>Hunt, assess, activate</h3><ul>
+        <li>Launch the four plays with every AE in week one and book the first net-new executive meetings by week two</li>
+        <li>Tier every named account; map each to a reference customer and a warm path through Cognition's investor network</li>
+        <li>Review every in-flight deal; add MEDDPICC and Command of the Message rigor and multithread anything single-threaded</li>
+        <li>Start with the two strongest reps: assess strengths fast and give each a peer-leadership role</li>
+        <li>1:1s with every AE, SE and FDE partner; meet sales, FDE, marketing, partnerships and product leaders</li>
+        <li>Hands on with Devin, DeepWiki, Devin Review, Devin Desktop and Devin Oncall</li></ul>
+        <div class="out"><b>Visible output</b>First greenfield meetings booked, every account tiered, a close plan on every in-flight deal, pipeline targets agreed by day 30</div></div>
+      <div class="phase"><span class="days">Days 31 to 60</span><h3>Land and build the playbook</h3><ul>
+        <li>Turn first executive meetings into M2 opportunities with written success criteria</li>
+        <li>Close the in-flight deals that are ready and turn each win into a reference</li>
+        <li>Ship one-page segment theses for airlines, hotels, cruise and mobility, and online travel</li>
+        <li>Build the proof pack: Mercedes-Benz, Itaú, Comarch, EBANX, Airbyte and GE Aerospace mapped to T&amp;H systems</li>
+        <li>Certify every rep on the talk track and the Claude Code, Cursor and Copilot battlecards</li>
+        <li>Open recruiting through my network to an A-player bar</li></ul>
+        <div class="out"><b>Visible output</b>Self-sourced pipeline growing every week, first lands, tested messaging and a hiring slate</div></div>
+      <div class="phase"><span class="days">Days 61 to 90</span><h3>Accelerate and forecast</h3><ul>
+        <li>Move qualified deals from M1 to M3 with an executive sponsor on each</li>
+        <li>Every active deal multithreaded, with MEDDPICC gaps closed or flagged</li>
+        <li>A reliable two-quarter forecast built on stage criteria and the commit rule</li>
+        <li>A headcount, SE and FDE plan sized to that forecast</li>
+        <li>Expansion plans for every landed account, scored on engineering output</li>
+        <li>Joint plays with AWS and SI partners on the largest modernization programs</li></ul>
+        <div class="out"><b>Visible output</b>A defensible two-quarter forecast, the resourcing plan to hit it, and expansion paths in every land</div></div>
     </div>
+    <div class="scoreboard"><b>90-day scoreboard</b><ul>
+      <li>Net-new pipeline created every month from the four plays</li><li>Executive meetings in greenfield accounts</li><li>Every active deal multithreaded</li>
+      <li>First T&amp;H lands referenceable</li><li>Two-quarter forecast on the commit rule</li><li>Headcount, SE and FDE plan by day 90</li></ul></div>
   </div>
 </section>
 
 <!-- CLOUD AGENTS -->
 <section id="cloud">
   <div class="wrap">
-    <div class="sec-head"><span class="eyebrow"><b>02</b>Why cloud agents, and why Cognition</span><h2>Local agents make engineers faster. Cloud agents add engineering capacity.</h2><p class="lede">Cloud agents decouple software production from human attention. A local agent speeds up one engineer. A cloud agent runs in parallel, around the clock, triggered by events, inside enterprise guardrails. That turns software from a labor-bound activity into a compute-bound one.</p></div>
+    <div class="sec-head"><span class="eyebrow"><b>03</b>Why cloud agents, and why Cognition</span><h2>Local agents make engineers faster. Cloud agents add engineering capacity.</h2><p class="lede">Cloud agents decouple software production from human attention. A local agent speeds up one engineer. A cloud agent runs in parallel, around the clock, triggered by events, inside enterprise guardrails. That turns software from a labor-bound activity into a compute-bound one.</p></div>
+
+    <div class="cols2 intro2">
+      <div class="col"><h3>The company</h3><p>Cognition describes itself as an applied AI lab building end-to-end software agents. It raised over $2B at a $48B valuation in September 2026, with run-rate revenue up from $492M in May to almost $900M. Devin writes most of Cognition's own code.</p></div>
+      <div class="col"><h3>The difference</h3><p><b class="lead-in">Devin is not a coding tool. It is engineering capacity as a service, at scale.</b> An agent workforce that compresses the time and cost of the entire software lifecycle, delivered with the change-management muscle large enterprises need to scale it.</p><p>Devin plans the work, writes the code, runs the build and tests, and opens a pull request with the evidence the team needs to review and merge it. Developers shift from code writers to architects and systems thinkers.</p></div>
+    </div>
 
     <div class="thirty"><b>In 30 seconds</b><p>Every company has more software to build than engineers to build it. Local AI agents make each engineer faster, but they are bounded by that engineer's attention: close the laptop and the work stops. Cloud agents remove that bound. They run in parallel in isolated machines, start from tickets and alerts, stay inside enterprise guardrails, and keep going through CI and review while the team sleeps. Engineering stops being a fixed headcount and becomes elastic capacity. Devin was built cloud-first from day one, which is why Cognition can credibly talk about self-driving software.</p></div>
 
@@ -558,26 +600,39 @@ td.wrap1{white-space:normal}
     </div>
 
 
-    <div class="subhead"><h4>What it means for Travel and Hospitality</h4><h3>Travel runs around the clock, so its engineering capacity should too</h3><p>Each property of a cloud agent answers a pressure in section 03.</p></div>
-    <div class="tablewrap"><table>
-      <thead><tr><th>Cloud agent property</th><th>The Travel and Hospitality pressure it answers</th></tr></thead>
+
+    <h3 class="glance" id="platform">Platform at a Glance</h3>
+    <div class="products">
+      <div class="prod"><span class="pk">Async agent</span><b>Devin</b><p>Cloud agent that plans, writes, tests and opens PRs in parallel sessions, each in its own VM. Runs single-tenant on AWS in the region the customer picks.</p><p class="opens">Opens with VPs of Engineering carrying a backlog</p></div>
+      <div class="prod"><span class="pk">Understand</span><b>DeepWiki</b><p>Indexes codebases into documentation and search engineers can query in plain language.</p><p class="opens">Opens with architects facing a modernization estimate</p></div>
+      <div class="prod"><span class="pk">IDE</span><b>Devin Desktop</b><p>The next generation of Windsurf: a full IDE with an agent command center that also runs Codex and Claude Agent through ACP.</p><p class="opens">Opens with developer experience leads</p></div>
+      <div class="prod"><span class="pk">Quality</span><b>Devin Review</b><p>Organizes large diffs and catches bugs so human review scales with agent output.</p><p class="opens">Opens with platform and quality leaders</p></div>
+      <div class="prod"><span class="pk">Operations</span><b>Devin Oncall</b><p>Launched October 15: investigates alerts and bugs and can prepare a fix for review, building on the TierZero acquisition.</p><p class="opens">Opens with SRE and operations technology</p></div>
+      <div class="prod"><span class="pk">Security</span><b>Vulnerability Program</b><p>FDEs embed, connect existing scanners, burn down the known backlog, then run Security Swarm for what scanners miss.</p><p class="opens">Opens with CISOs and AppSec leads</p></div>
+  </div>
+</section>
+
+<!-- COMPETITION -->
+<section id="competition">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow"><b>04</b>Competition</span><h2>How the market splits, and how deals are won</h2><p class="lede">Buyers already own some of these tools. The job is to show where Devin fits beside them and why it wins the work that matters. Select an alternative to open its battlecard.</p></div>
+    <div class="tablewrap mkt" style="margin:0 0 28px"><table>
+      <thead><tr><th>Category</th><th>Examples</th><th>What it sells</th><th>Where Devin fits</th></tr></thead>
       <tbody>
-        <tr><td>Always on, event-triggered</td><td>An incident at 3 a.m. on a holiday weekend. Devin Oncall starts the investigation from the alert, so the on-call engineer starts from a root cause, not a log search.</td></tr>
-        <tr><td>Parallel at scale</td><td>TPF reservation modernization and the move to OPERA Cloud are hundreds of repetitive work items. Fan them out instead of queueing them behind a shrinking expert pool.</td></tr>
-        <tr><td>Persistent through the lifecycle</td><td>Peak-season freezes stall modernization. Agents keep scoping, testing and preparing changes so they are ready to merge when the window opens.</td></tr>
-        <tr><td>Governed, in your VPC</td><td>PCI data, loyalty PII and regulatory orders such as Marriott's demand isolation and audit. Cloud agents centralize both.</td></tr>
-        <tr><td>Proactive security</td><td>The Vulnerability Program and Security Swarm clear the backlog continuously, not after the next MGM-scale incident.</td></tr>
-        <tr><td>Capacity, not seats</td><td>Agent-ready booking APIs are a revenue race. Adding capacity without adding headcount lets brands build for AI buyers now.</td></tr>
+        <tr><td>IDE assistants</td><td class="wrap1">GitHub Copilot</td><td class="wrap1">Faster typing for each developer, priced per seat</td><td class="wrap1">Devin finishes the work with no developer at the keyboard</td></tr>
+        <tr><td>AI-native IDEs</td><td class="wrap1">Cursor, Devin Desktop</td><td class="wrap1">A better editor with an agent inside</td><td class="wrap1">Devin Desktop competes here; Devin Cloud goes beyond the IDE</td></tr>
+        <tr><td>Lab coding agents</td><td class="wrap1">Claude Code, Codex</td><td class="wrap1">A strong model with a terminal agent</td><td class="wrap1">Devin is model-independent and can run these agents alongside its own</td></tr>
+        <tr><td>In-house builds</td><td class="wrap1">Stripe's minions</td><td class="wrap1">Custom cloud agents for one company</td><td class="wrap1">Few can staff isolation, orchestration and governance indefinitely</td></tr>
       </tbody>
     </table></div>
-    <p class="quote">Cloud agents are the only form of AI that adds engineering capacity rather than just speed.</p>
+    <div class="bc"><div class="bclist" id="bclist"></div><div class="bcpanel" id="bcpanel" aria-live="polite"></div></div>
   </div>
 </section>
 
 <!-- WHY T&H -->
 <section id="why">
   <div class="wrap">
-    <div class="sec-head"><span class="eyebrow"><b>03</b>Why Travel &amp; Hospitality</span><h2>Three pressures every executive in this industry feels</h2><p class="lede">None of them is a coding problem. They are capacity, risk and speed problems, and Devin is strongest exactly where this industry is weakest: old code, security debt and incident response.</p></div>
+    <div class="sec-head"><span class="eyebrow"><b>05</b>Why Travel &amp; Hospitality</span><h2>Three pressures every executive in this industry feels</h2><p class="lede">None of them is a coding problem. They are capacity, risk and speed problems, and Devin is strongest exactly where this industry is weakest: old code, security debt and incident response.</p></div>
     <div class="press-grid">
       <div class="pc"><span class="n">PRESSURE 1</span><h3>Downtime is a P&amp;L event</h3><p>Boards remember the numbers. An IT failure at an airline or resort shows up in the quarter, the stock and a DOT or regulator inquiry.</p>
         <div class="figs"><div class="fig"><strong>$800M</strong><span>Southwest Q4 2022 pre-tax impact</span></div><div class="fig"><strong>$500M</strong><span>Delta, five days after CrowdStrike</span></div></div>
@@ -589,24 +644,70 @@ td.wrap1{white-space:normal}
         <div class="figs"><div class="fig"><strong>$100M</strong><span>MGM Resorts cyberattack impact</span></div><div class="fig"><strong>20 yrs</strong><span>Marriott FTC security order</span></div></div>
         <p class="answer"><b>Devin's answer:</b> the Vulnerability Program clears the backlog, and Devin builds the API backlog agents need.</p></div>
     </div>
+    <div class="subhead"><h4>Why now</h4><h3>Three clocks are already running for these buyers</h3></div>
+    <div class="trio" style="margin-top:0">
+      <div><h4>OPERA 5.6 support ends</h4><p>Premier Support ends in December 2027, so hotel groups are budgeting the move to OPERA Cloud now.</p></div>
+      <div><h4>AI agents start booking</h4><p>Agentic booking is arriving through GDSs, payments partners and search. Brands without agent-ready APIs risk losing the sale.</p></div>
+      <div><h4>Q1 planning happens in the freeze</h4><p>The holiday code freeze is when buyers plan next year. A team in market in November meets them in planning, not in January.</p></div>
+    </div>
+
+    <div class="subhead"><h4>Why it takes a cloud agent</h4><h3>Travel runs around the clock, so its engineering capacity should too</h3><p>Each property of a cloud agent answers one of the pressures above.</p></div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Cloud agent property</th><th>The Travel and Hospitality pressure it answers</th></tr></thead>
+      <tbody>
+        <tr><td>Always on, event-triggered</td><td>An incident at 3 a.m. on a holiday weekend. Devin Oncall starts the investigation from the alert, so the on-call engineer starts from a root cause, not a log search.</td></tr>
+        <tr><td>Parallel at scale</td><td>TPF reservation modernization and the move to OPERA Cloud are hundreds of repetitive work items. Fan them out instead of queueing them behind a shrinking expert pool.</td></tr>
+        <tr><td>Persistent through the lifecycle</td><td>Peak-season freezes stall modernization. Agents keep scoping, testing and preparing changes so they are ready to merge when the window opens.</td></tr>
+        <tr><td>Governed, in your VPC</td><td>PCI data, loyalty PII and regulatory orders such as Marriott's demand isolation and audit. Cloud agents centralize both.</td></tr>
+        <tr><td>Proactive security</td><td>The Vulnerability Program and Security Swarm clear the backlog continuously, not after the next MGM-scale incident.</td></tr>
+        <tr><td>Capacity, not seats</td><td>Agent-ready booking APIs are a revenue race. Adding capacity without adding headcount lets brands build for AI buyers now.</td></tr>
+      </tbody>
+    </table></div>
+
     <div class="subhead"><h4>Customer proof</h4><h3>Devin is already doing this work in industries that look like ours</h3><p>Published results from Devin customers, each matched to the travel and hospitality system it most resembles.</p></div>
     <div class="cases"><div class="case"><span class="ind">Aviation</span><b>GE Aerospace</b><span class="big num">2x</span><p>user-story output for a constrained engineering team over three months, from story to tested code.</p><p class="maps"><i>Maps to</i>Airline operations and maintenance systems</p></div><div class="case"><span class="ind">Enterprise software</span><b>Comarch</b><span class="big num">5 yrs &rarr; 18 mo</span><p>to rebuild a 10M-line Clarion ERP in C# and web, with test coverage taken from 60% to about 100%.</p><p class="maps"><i>Maps to</i>Property management and reservation platform rewrites</p></div><div class="case"><span class="ind">Payments</span><b>EBANX</b><span class="big num">6 wks &rarr; 12 hrs</span><p>for a payment-provider integration. Devin now authors 92% of merged pull requests in core payments.</p><p class="maps"><i>Maps to</i>Payment, loyalty and partner integrations</p></div><div class="case"><span class="ind">Data infrastructure</span><b>Airbyte</b><span class="big num">413 fixes</span><p>drafted in 90 days from about 990 triaged issues across 700+ connectors.</p><p class="maps"><i>Maps to</i>GDS, channel-manager and OXI-to-OHIP interfaces</p></div><div class="case"><span class="ind">Retail, via WPP</span><b>Halfords</b><span class="big num">99.97%</span><p>peak uptime on a rebuild delivered at 110% of scope in 25% less time.</p><p class="maps"><i>Maps to</i>Holiday-peak booking and e-commerce</p></div><div class="case"><span class="ind">Logistics, via Cognizant</span><b>Odyssey Logistics</b><span class="big num">37%</span><p>net cost saving rebuilding Access and VBA apps as cloud-native; the pilot closed in 21 days and is in production.</p><p class="maps"><i>Maps to</i>Back-office tools at properties, stations and airports</p></div></div>
     <p class="quote" style="margin-top:48px">Devin adds engineering capacity without adding headcount. That is the sentence every T&amp;H conversation should end on.</p>
   </div>
 </section>
 
-<!-- TALK TRACK -->
-<section id="talk">
+<!-- SELL -->
+<section id="sell">
   <div class="wrap">
-    <div class="sec-head"><span class="eyebrow"><b>04</b>Talk track</span><h2>The conversation with a CIO at an airline or hotel group</h2><p class="lede">A Challenger meeting runs in a set order. Step through what my team and I would bring to a first executive meeting, with the evidence behind each step.</p></div>
+    <div class="sec-head"><span class="eyebrow"><b>06</b>How the team sells</span><h2>One territory map, one conversation, four plays</h2><p class="lede">Every AE hunts the same way, so we can see what converts, coach to it and move fast. Each play names its buyer and opens with that buyer's question.</p></div>
+    <div class="subhead" style="margin-top:0"><h4>Where we hunt</h4><h3>Five segments, each with its own buyer and reason to act</h3><p>Select a segment.</p></div>
+
+    <div class="segs" id="segs" role="tablist" aria-label="Segments"></div>
+    <div class="segpanel" id="segpanel" aria-live="polite"></div>
+    <p class="fine" style="margin-top:12px">Accounts are illustrative and drawn from public information. I would confirm named accounts, current customers and partner overlap with the team before any outreach.</p>
+
+    <div class="subhead" id="talk"><h4>The first conversation</h4><h3>A six-step Challenger meeting with a CIO at an airline or hotel group</h3><p>Step through what my team and I would bring to a first executive meeting.</p></div>
+
     <div class="steps" id="steps" role="tablist" aria-label="Talk track steps"></div>
     <div class="steppanel" id="steppanel" aria-live="polite"></div>
-    <div class="trio">
-      <div><h4>Teach</h4><p>The first meeting changes how they think about engineering capacity. The demo comes after they agree headcount and SI contracts will not close the gap.</p></div>
-      <div><h4>Tailor</h4><p>Outage risk for the COO, modernization timelines for the CIO, the backlog and audit trail for the CISO, and cost per completed task for finance.</p></div>
-      <div><h4>Take control</h4><p>Price the next outage, push back on "we will wait for the SI," and leave every meeting with a dated next step and a named use case.</p></div>
+
+    <div class="subhead" id="plays"><h4>Four plays</h4><h3>Four plays for the first quarter</h3><p>Each play starts from data the AE pulls on the account, leads with one specific question and runs as a three-email/LinkedIn/Social Media/conversation sequence. Every AE runs the same plays so we can see what converts and pivot as necessary.</p></div>
+
+    <div class="tabs" id="playtabs" role="tablist" aria-label="Plays"></div>
+    <div id="playpanel"></div>
+  </div>
+</section>
+
+<!-- DEAL -->
+<section id="deal">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow"><b>07</b>Deal and measurement</span><h2>Where these deals stall, how we qualify them, and how we prove value</h2><p class="lede">Six stalls we plan for from the first meeting, the MEDDPICC checklist every opportunity runs against, and the scorecard every pilot is judged on.</p></div>
+    <div class="stalls">
+      <div class="stall"><h4>"Our code is too old and too custom"</h4><p>We start with DeepWiki on one TPF or COBOL module in week one, with no code changes, and show the Mercedes-Benz and Comarch results.</p></div>
+      <div class="stall"><h4>"Security won't let an agent near this"</h4><p>Single-tenant on AWS, each session in its own VM, every change as a reviewed PR. The CISO joins at M2, not at signature.</p></div>
+      <div class="stall"><h4>"Not during peak season"</h4><p>We time the land for shoulder season and start with work that never touches a peak release: documentation, tests and security fixes.</p></div>
+      <div class="stall"><h4>The pilot drifts</h4><p>No open-ended pilots. One use case, written success criteria and the expansion terms agreed before work starts.</p></div>
+      <div class="stall"><h4>Access stalls after signature</h4><p>GitHub, Jira, Artifactory and Figma access can hold a deployment for weeks. The access plan is signed at M3 with the FDE lead, before the order closes.</p></div>
+      <div class="stall"><h4>A director-level champion alone</h4><p>Enterprise red tape needs top-down buy-in. An executive sponsor is engaged by M2, and the business case prices outage hours, consultant spend and open reqs.</p></div>
     </div>
-    <div class="measure">
+    <div class="medhead"><div><h3>MEDDPICC checklist</h3><p class="fine">Updated after every call and reviewed with each AE weekly. Select a letter to flip it to the proof required before a deal counts in the forecast.</p></div><button class="btn ghost" id="flipall" type="button">Flip all</button></div>
+    <div class="med" id="med"></div>
+    <div class="commit"><b>Commit rule</b>A deal enters commit only when the economic buyer has confirmed the metrics, the use case has met written success criteria, the paper process is dated in a mutual plan, and the champion has been tested.</div>
+    <div class="measure" id="measure">
       <div class="mhead"><h4>How we prove value</h4><h3>Measure real output, not token usage</h3><p>Tokens spent, ACUs consumed and raw pull request counts are easy to game and prove nothing to a CFO. Every pilot is scored on outcomes the customer already cares about.</p></div>
       <div class="mgrid">
         <div class="mcol bad"><h4>What we do not sell on</h4><ul><li>Tokens or ACUs consumed</li><li>Raw pull request counts</li><li>A savings percentage promised before discovery</li></ul></div>
@@ -617,59 +718,27 @@ td.wrap1{white-space:normal}
   </div>
 </section>
 
-<!-- TERRITORY -->
-<section id="territory">
-  <div class="wrap">
-    <div class="sec-head"><span class="eyebrow"><b>05</b>Territory</span><h2>Where the team would spend its time</h2><p class="lede">Travel and hospitality splits into segments with different buyers, different stacks and different reasons to act. Select a segment.</p></div>
-    <div class="segs" id="segs" role="tablist" aria-label="Segments"></div>
-    <div class="segpanel" id="segpanel" aria-live="polite"></div>
-    <p class="fine" style="margin-top:12px">Accounts are illustrative and drawn from public information. I would confirm named accounts, current customers and partner overlap with the team before any outreach.</p>
-  </div>
-</section>
-
-<!-- PLAYS -->
-<section id="plays">
-  <div class="wrap">
-    <div class="sec-head"><span class="eyebrow"><b>06</b>Plays</span><h2>Four plays for the first quarter</h2><p class="lede">Each play starts from data the AE pulls on the account, leads with one specific question and runs as a three-email/LinkedIn/Social Media/conversation sequence. Every AE runs the same plays so we can see what converts and pivot as necessary.</p></div>
-    <div class="tabs" id="playtabs" role="tablist" aria-label="Plays"></div>
-    <div id="playpanel"></div>
-  </div>
-</section>
-
-<!-- COMPETITION -->
-<section id="competition">
-  <div class="wrap">
-    <div class="sec-head"><span class="eyebrow"><b>07</b>Competition</span><h2>How deals are won against each alternative</h2><p class="lede">Where each option is strong, where Devin wins, and the question the AE asks in discovery. Select an alternative to open its battlecard.</p></div>
-    <div class="bc"><div class="bclist" id="bclist"></div><div class="bcpanel" id="bcpanel" aria-live="polite"></div></div>
-  </div>
-</section>
-
-<!-- DEAL -->
-<section id="deal">
-  <div class="wrap">
-    <div class="sec-head"><span class="eyebrow"><b>08</b>Deal</span><h2>Where these deals stall, and how we qualify them</h2><p class="lede">Six stalls we plan for from the first meeting, and the MEDDPICC checklist every opportunity runs against.</p></div>
-    <div class="stalls">
-      <div class="stall"><h4>"Our code is too old and too custom"</h4><p>We start with DeepWiki on one TPF or COBOL module in week one, with no code changes, and show the Mercedes-Benz and Comarch results.</p></div>
-      <div class="stall"><h4>"Security won't let an agent near this"</h4><p>Single-tenant on AWS, each session in its own VM, every change as a reviewed PR. The CISO joins at M2, not at signature.</p></div>
-      <div class="stall"><h4>"Not during peak season"</h4><p>We time the land for shoulder season and start with work that never touches a peak release: documentation, tests and security fixes.</p></div>
-      <div class="stall"><h4>The pilot drifts</h4><p>No open-ended pilots. One use case, written success criteria and the expansion terms agreed before work starts.</p></div>
-      <div class="stall"><h4>Usage pricing worries finance</h4><p>We forecast ACU consumption from the first six weeks and lead with Cognition's value guarantee.</p></div>
-      <div class="stall"><h4>Only engineers are involved</h4><p>The CIO or COO is in the room by M2, and the business case prices outage hours, consultant spend and open reqs.</p></div>
-    </div>
-    <div class="medhead"><div><h3>MEDDPICC checklist</h3><p class="fine">Updated after every call and reviewed with each AE weekly. Select a letter to flip it to the proof required before a deal counts in the forecast.</p></div><button class="btn ghost" id="flipall" type="button">Flip all</button></div>
-    <div class="med" id="med"></div>
-    <div class="commit"><b>Commit rule</b>A deal enters commit only when the economic buyer has confirmed the metrics, the use case has met written success criteria, the paper process is dated in a mutual plan, and the champion has been tested.</div>
-  </div>
-</section>
-
 <!-- TEAM -->
 <section id="team">
   <div class="wrap">
-    <div class="sec-head"><span class="eyebrow"><b>09</b>Running the team</span><h2>How I would run the region</h2><p class="lede">One stage language, one cadence and one forecast rule, so every AE, SE and forward-deployed engineer knows where a deal stands without a meeting.</p></div>
+    <div class="sec-head"><span class="eyebrow"><b>08</b>Running the team</span><h2>How I would run the region</h2><p class="lede">One stage language, one cadence and one forecast rule, so every AE, SE and forward-deployed engineer knows where a deal stands without a meeting.</p></div>
     <div class="stages">
       <div class="stage"><span class="code">M1</span><h3>Discovery with pain</h3><ul><li>Named pain tied to cost, risk or a date</li><li>Use case picked: legacy, security, incidents or APIs</li><li>Champion identified and mapped</li></ul></div>
-      <div class="stage"><span class="code">M2</span><h3>Technical validation</h3><ul><li>Economic buyer met and metrics confirmed</li><li>Success criteria written with SE and FDE</li><li>Security review started</li></ul></div>
-      <div class="stage"><span class="code">M3</span><h3>Business case and paper</h3><ul><li>ACU forecast and business case agreed</li><li>Mutual action plan dated back from signature</li><li>Expansion path written into the first order</li></ul></div>
+      <div class="stage"><span class="code">M2</span><h3>Technical validation</h3><ul><li>Executive sponsor engaged and metrics confirmed</li><li>Success criteria written with SE and FDE</li><li>Security review started</li></ul></div>
+      <div class="stage"><span class="code">M3</span><h3>Business case and paper</h3><ul><li>ACU forecast and business case agreed</li><li>Mutual action plan dated back from signature</li><li>Access plan for GitHub, Jira, Artifactory and Figma signed</li><li>Expansion path written into the first order</li></ul></div>
+    </div>
+    <div class="phases two">
+      <div class="phase"><span class="days">Building the bench</span><h3>Start strong, hire to a higher bar</h3><ul>
+        <li>Start with the two strongest reps on the team and assess strengths in the first two weeks</li>
+        <li>Give each a peer-leadership role: one owns the plays and messaging, one owns forecast hygiene</li>
+        <li>Hire through my network to an A-player bar: drive, learning orientation, a proven sales record and startup fit</li>
+        <li>Every hire is a hunter who can show self-sourced pipeline</li></ul></div>
+      <div class="phase"><span class="days">Ramping a new AE</span><h3>Selling in 30 days, not a quarter</h3><ul>
+        <li>Week 1: hands on with Devin, the six-step talk track and the Claude Code, Cursor and Copilot battlecards</li>
+        <li>Week 2: certified on the talk track in a role play with me and an FDE</li>
+        <li>Week 3: the four plays live on 20 named accounts</li>
+        <li>Week 4: first executive insight meeting booked</li>
+        <li>Day 60: first opportunity at M2 with written success criteria</li></ul></div>
     </div>
     <div class="tablewrap"><table>
       <thead><tr><th>Motion</th><th>What happens</th><th>Why it matters</th></tr></thead>
@@ -685,46 +754,27 @@ td.wrap1{white-space:normal}
   </div>
 </section>
 
-<!-- 90 DAYS -->
-<section id="plan">
+<!-- RECORD -->
+<section id="record">
   <div class="wrap">
-    <div class="sec-head"><span class="eyebrow"><b>10</b>The first 90 days</span><h2>Front-loaded, with something to inspect at every gate</h2><p class="lede">Deals in flight first, the team second, new logos from week one, and a forecast leadership can trust by day 90.</p></div>
-    <div class="phases">
-      <div class="phase"><span class="days">Days 1 to 30</span><h3>Inherit, assess, activate</h3><ul>
-        <li>Review every inherited opportunity with its AE in week one; confirm stage, champion, next step and close plan</li>
-        <li>1:1s with every AE, SE and FDE partner; a SWOT for each rep and for the team</li>
-        <li>Meet sales, FDE, marketing, partnerships and product leaders</li>
-        <li>Tier the top 20 accounts and map each to a reference customer and a warm path through Cognition's investor network</li>
-        <li>Hands on with Devin, DeepWiki, Devin Review, Devin Desktop and Devin Oncall</li>
-        <li>Launch the four plays with every AE; stand up the reporting baseline</li></ul>
-        <div class="out"><b>Visible output</b>Close plan on every in-flight deal, team SWOT reviewed, top 20 mapped, M1 targets set per AE</div></div>
-      <div class="phase"><span class="days">Days 31 to 60</span><h3>Land and build the playbook</h3><ul>
-        <li>Close the in-flight deals that are ready and turn each win into a reference</li>
-        <li>Ship one-page segment theses for airlines, hotels, gaming and online travel</li>
-        <li>Build the proof pack: Mercedes-Benz, Itaú, Comarch, EBANX, Airbyte and GE Aerospace mapped to T&amp;H systems</li>
-        <li>Certify every rep on the talk track; run insight meetings, not first-call demos</li>
-        <li>Plan peak-season timing into every mutual action plan</li>
-        <li>Open recruiting for the next hires, screening for grit and self-sourcing</li></ul>
-        <div class="out"><b>Visible output</b>First lands in production, tested messaging, segment theses and a hiring slate</div></div>
-      <div class="phase"><span class="days">Days 61 to 90</span><h3>Accelerate and forecast</h3><ul>
-        <li>Move qualified deals from M1 to M3 with an executive sponsor on each</li>
-        <li>Every active deal multithreaded, with MEDDPICC gaps closed or flagged</li>
-        <li>A forecast built on stage criteria, the commit rule and dated next steps</li>
-        <li>Expansion plans for every landed account, using ACU usage trends</li>
-        <li>Joint plays with AWS and SI partners on the largest modernization programs</li>
-        <li>Share what works with the other verticals</li></ul>
-        <div class="out"><b>Visible output</b>A defensible forecast, faster stage progression and expansion paths in every land</div></div>
+    <div class="sec-head"><span class="eyebrow"><b>09</b>Track record</span><h2>I have built vertical teams and sold AI modernization before</h2><p class="lede">Twenty years selling complex technology to enterprise engineering and security buyers, building vertical teams, and selling modernization with AI before it had a category name.</p></div>
+    <div class="aboutstats">
+      <div><strong>$9M+</strong><span>ARR in a single account landed at Honeycomb, sold through architecture, security and procurement</span></div>
+      <div><strong>6 + 3</strong><span>AEs and SDRs on the first FSI vertical team I built from zero</span></div>
+      <div><strong>$60M</strong><span>Qualified pipeline from an AI-assisted modernization practice I co-built</span></div>
+      <div><strong>2x</strong><span>Quota as an IC at Pivotal, and 150%+ as a manager</span></div>
     </div>
-    <div class="scoreboard"><b>90-day scoreboard</b><ul>
-      <li>Close plan on every inherited deal</li><li>Top 20 accounts mapped to a reference and warm path</li><li>Four plays live with every AE</li>
-      <li>First T&amp;H lands referenceable</li><li>Commit rule used on every forecast call</li><li>Targets set with my manager by day 30</li></ul></div>
+    <div class="why">
+      <div><h3>Why travel and hospitality from FSI</h3><p>FSI is the hardest buyer in enterprise software: the heaviest security review, the most legacy debt and the longest cycles. Travel and hospitality shares all three, with TPF instead of COBOL cores and PCI and FTC orders instead of bank regulators. I covered Marriott and Delta at VMware, so I know how these buyers run engineering.</p></div>
+      <div><h3>Why Cognition</h3><p>Most AI coding tools sell seats to developers. Cognition sells engineering capacity to the enterprise and backs it with forward-deployed engineers, which is the motion I have run for a decade in cloud-native and AI-assisted modernization. CISSP and CIPP certified, with an AI/ML startup exit behind me.</p></div>
+    </div>
   </div>
 </section>
 
 <!-- NEXT -->
 <section id="next">
   <div class="wrap next">
-    <div class="sec-head" style="margin:0"><span class="eyebrow"><b>11</b>Next step</span><h2>Start in early November. Be selling at full speed when Q1 opens.</h2><p class="lede">Many airlines, hotels and casinos lock down their systems from mid-November through New Year's to protect holiday peak. Few buyers start new initiatives during a freeze, which makes those weeks the right time to ramp. If I start in early November, the team walks into Q1 2027 with a plan, a full bench and pipeline already in motion.</p><p class="lede">I'd welcome 30 minutes to walk the team through this plan for feedback. Every segment, play and number here is a starting hypothesis, and the fastest way to improve it is with the people who sell Devin every day.</p></div>
+    <div class="sec-head" style="margin:0"><span class="eyebrow"><b>10</b>Next step</span><h2>Start in early November. Be selling at full speed when Q1 opens.</h2><p class="lede">Many airlines, hotels and casinos lock down their systems from mid-November through New Year's to protect holiday peak. Few buyers start new initiatives during a freeze, which makes those weeks the right time to ramp. If I start in early November, the team walks into Q1 2027 with a plan, a full bench and pipeline already in motion.</p><p class="lede">I'd welcome 30 minutes to walk the team through this plan for feedback. Every segment, play and number here is a starting hypothesis, and the fastest way to improve it is with the people who sell Devin every day.</p></div>
     <div class="contact">
       <div class="line"><span id="email">dan.sinni@gmail.com</span><button class="copy" type="button" data-copy="email">Copy email</button></div>
       <div class="line"><span id="phone">917-805-8939</span><button class="copy" type="button" data-copy="phone">Copy number</button></div>
@@ -761,7 +811,7 @@ const STEPS=[
   a:["What better looks like",[["Understand","DeepWiki maps the legacy estate"],["Execute","Devin works the backlog in parallel sessions"]]],
   b:["And keeps it safe",[["Review","Devin Review keeps quality high as volume grows"],["Respond","Devin Oncall investigates alerts"]]]},
  {k:"Our solution",d:"Show why Cognition",say:"This is already working at companies with code as old and as critical as yours. We will prove it against a deadline you already care about, measured in engineering output, not tokens spent.",
-  a:["The proof",[["8 months to 8 days","Mercedes-Benz COBOL modernization estimate"],["70%","Itaú vulnerability backlog resolved automatically"]]],
+  a:["The proof",[["8 months to 8 days","Mercedes-Benz COBOL modernization estimate"],["6 weeks to 12 hours","EBANX payment-provider integration"]]],
   b:["How we deliver",[["5 years to 18 months","Comarch's 10M-line ERP rewrite"],["Forward-deployed engineers","Embedded with your team, single-tenant on AWS"],["The scorecard","Productive engineering hours and dates hit, agreed before the pilot starts"]]]}
 ];
 const stepsEl=document.getElementById("steps"), spEl=document.getElementById("steppanel");
@@ -791,13 +841,7 @@ const SEGS=[
   why:"OPERA 5.6 Premier Support ends December 2027"+", the Marriott FTC order raised the security bar"+", and Google is building agentic booking with major brands"+".",
   land:"Vulnerability backlog burn-down, or the OXI-to-OHIP interface migration",
   exp:"Brand apps, agent-ready APIs, loyalty modernization",
-  acc:["Marriott","Hilton","Hyatt","IHG","Wyndham","Choice"]},
- {code:"GAM",name:"Gaming & resorts",who:"CIO, CISO, VP Gaming Systems, VP Digital",
-  stack:"Casino management systems, hotel PMS, sportsbook and iGaming apps that release weekly.",
-  why:"The MGM attack cost about $100M"+", and iGaming competes on release speed.",
-  land:"Vulnerability remediation plus incident triage",
-  exp:"iGaming feature velocity, test generation, platform migrations",
-  acc:["MGM Resorts","Caesars","Wynn","Las Vegas Sands","PENN"]},
+  acc:["Marriott","Hilton","Hyatt","IHG","Wyndham","MGM Resorts"]},
  {code:"OTA",name:"Online travel",who:"CTO, VP Engineering, Head of Platform",
   stack:"Large cloud codebases with hundreds of services and constant experimentation.",
   why:"AI agents are becoming the shopping front door"+", and engineering cost is under pressure.",
@@ -845,7 +889,7 @@ const PLAYS=[
    ["Day 8, breakup",`${v("first_name")}, last note from me. If modernization is parked until after peak, happy to send the Mercedes-Benz and Comarch write-ups for your planning cycle.`,`No worries if not.`]],
   proof:"Mercedes-Benz, 8 months to 8 days; Comarch, a 5-year ERP rewrite in 18 months",value:"Discovery in days, lower migration risk"},
  {tab:"Security debt burn-down",thesis:"Scanner findings pile up faster than engineers can fix them.",
-  who:"Hotel groups, gaming companies and online travel holding payment, passport and loyalty data.",
+  who:"Hotel groups, cruise lines and online travel holding payment, passport and loyalty data.",
   data:[v("scanner")+", Snyk, Veracode, Fortify or SonarQube from job posts",v("driver")+", PCI DSS, a regulator order or a disclosed incident",v("ciso")+", the security leader quoted in recent press"],
   personas:"CISO and VP of Application Security first, then the CIO.",
   disc:["How large is the scanner backlog, and how old is the median finding?","Who fixes findings today: security or the app teams?","What does the board or the PCI assessor see each quarter?"],
@@ -856,7 +900,7 @@ const PLAYS=[
    ["Day 8, breakup",`${v("first_name")}, last note from me. Seems like the backlog may be under control?`,`If not, I can share how the program is scoped so you have it for budget season. No worries either way.`]],
   proof:"Itaú, about 70% of scanner findings fixed automatically; FE fundinfo, fixes rolled across 1,800 repos",value:"Lower risk, audit-ready evidence"},
  {tab:"Peak-season resilience",thesis:"One bad week costs more than a year of engineering tools.",
-  who:"Airline operations technology, hotel and casino ops, online travel on-call teams.",
+  who:"Airline operations technology, hotel and resort ops, online travel on-call teams.",
   data:[v("incidents")+", public outages or status-page incidents in the last 12 months",v("observability")+", Datadog, Splunk, PagerDuty from tech stack data",v("peak")+", the busiest season or event for the brand"],
   personas:"SVP of Operations Technology or VP of Engineering first, then the head of SRE.",
   disc:["Walk me through your last peak-season incident. How long before you knew where to look?","How many engineers are on peak freeze instead of the roadmap?","What does an hour of downtime cost in rebookings and comps?"],
@@ -898,10 +942,10 @@ showPlay(0);
 
 /* ---------- Battlecards ---------- */
 const BC=[
- {n:"Lab coding agents",s:"Claude Code, Codex and similar",tag:"Most common",
-  strong:"Strong models, developer love and fast self-serve adoption.",
-  win:"Devin works across the whole lifecycle at enterprise scale: VPC deployment, permissions for 100,000+ developers, COBOL as well as Python, and forward-deployed engineers who drive adoption"+". Devin Desktop runs these agents too, through ACP"+".",
-  ask:"Who in your organization turns individual developer tools into a measured outcome, like a backlog cleared?"},
+ {n:"Claude Code",s:"Anthropic's coding agent; Codex is similar",tag:"Most asked",
+  strong:"A strong model, developer love and fast self-serve adoption. Many buyers already use it.",
+  win:"Claude Code makes an engineer faster. Devin is engineering capacity the enterprise runs, governs and measures: parallel cloud sessions, VPC deployment, COBOL as well as Python, and forward-deployed engineers who drive adoption. Devin Desktop can run Claude Agent alongside it, so it is not either-or.",
+  ask:"Who turns individual developer tools into a measured outcome, like a backlog cleared by a date?"},
  {n:"GitHub Copilot",s:"Bundled in Microsoft contracts",tag:"Often incumbent",
   strong:"Already purchased, already installed, familiar to developers.",
   win:"Autonomous work that runs in parallel without a developer at the keyboard, legacy code support, and pricing tied to work completed instead of seats.",
@@ -969,7 +1013,7 @@ function selectEl(el){const r=document.createRange();r.selectNodeContents(el);co
 const links=[...document.querySelectorAll("#navlist a")];
 if("IntersectionObserver" in window){
   const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){links.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+en.target.id))}})},{rootMargin:"-45% 0px -50% 0px"});
-  ["top","cognition","cloud","why","talk","territory","plays","competition","deal","team","plan"].forEach(id=>{const s=document.getElementById(id);if(s)io.observe(s)});
+  ["top","heard","plan","cloud","competition","why","sell","deal","team","record"].forEach(id=>{const s=document.getElementById(id);if(s)io.observe(s)});
 }
 })();
 </script>
